@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import 'bulma/css/bulma.min.css';
-import './App.css';
+import { Provider } from 'react-redux';
+import 'bulma/bulma.sass';
+import './App.scss';
+import store from './store/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSun, faCalendarDay, faCalendarWeek, faCalendar, faCity, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -12,16 +14,18 @@ library.add(faSun, faCalendarDay, faCalendarWeek, faCalendar, faCity, faSearch);
 class WeatherViewApp extends Component {
     render() {
         return (
-            <Router>
-                <div className="WeatherViewApp">
-                    <MainMenu />
-                    <div className="container">
-                        <Switch>
-                            <Route exact path="/" component={Dashboard} />
-                        </Switch>
+            <Provider store={store}>
+                <Router>
+                    <div className="WeatherViewApp">
+                        <MainMenu />
+                        <div className="container">
+                            <Switch>
+                                <Route exact path="/" component={Dashboard} />
+                            </Switch>
+                        </div>
                     </div>
-                </div>
-            </Router>
+                </Router>
+            </Provider>
         );
     }
 }
