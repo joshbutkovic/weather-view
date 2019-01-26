@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { GET_CURRENT_WEATHER } from './types';
+import { GET_CURRENT_WEATHER_BY_ZIP } from './types';
+import { getCurrentWeatherByZipUrl } from '../../configuration/apiConfig';
 
-export const getCurrentWeather = () => async dispatch => {
-    const res = await axios.get('https://api.openweathermap.org/data/2.5/weather?zip=89122&appid=d88536a028aaf9d7da1f938f02a6b6ec');
+export const getCurrentWeatherByZip = (zip) => async dispatch => {
+    const res = await axios.get(getCurrentWeatherByZipUrl(zip));
     dispatch({
-        type: GET_CURRENT_WEATHER,
+        type: GET_CURRENT_WEATHER_BY_ZIP,
         payload: res.data,
     });
 };

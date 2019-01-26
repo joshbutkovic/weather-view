@@ -1,16 +1,14 @@
-@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import '~bulma/bulma';
+@import '~bulma-extensions/bulma-switch/dist/css/bulma-switch';
+@import './Animation.scss';
 @import url('https://fonts.googleapis.com/css?family=Sarabun');
+
+html, body, input.input {
+    font-family: 'Sarabun', 'Arial', sans-serif;
+}
 
 input.input:focus {
     box-shadow:none !important;
-
 }
 
-input.input {
-    //font-family: 'Comfortaa', cursive !important;
-    font-family: 'Sarabun', sans-serif;
-}
 
-body {
-    font-family: 'Sarabun', sans-serif;
-}

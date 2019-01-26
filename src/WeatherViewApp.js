@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import 'bulma/bulma.sass';
+// import 'bulma/bulma.sass';
+// import 'bulma-checkradio/src/sass/index.sass';
 import './App.scss';
 import store from './store/store';
 import { library } from '@fortawesome/fontawesome-svg-core';

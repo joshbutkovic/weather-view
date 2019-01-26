@@ -2,51 +2,71 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.scss';
 import { connect } from 'react-redux';
-import {getCurrentWeather} from '../../store/actions/weatherActions';
-import SearchBar from './SearchBar';
+import { getCurrentWeatherByZip } from '../../store/actions/weatherActions';
+import { zipRegex, cityRegex } from '../../configuration/regex';
+import SearchBar from './SearchBar/SearchBar';
+import GetWeatherButton from './GetWeatherButton';
 
 class Dashboard extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            searchTerm: ''
+            searchTerm: '',
+            selectedSearchParameter: '',
         };
     }
 
-    onSearchTermChange = (event) => {
-        console.log(event.target.value);
+    onSearchTermChange = e => {
         this.setState({
-            searchTerm: event.target.value,
+            searchTerm: e.target.value,
         });
+    };
+
+    checkForValidSearchCity = searchTerm => {
+        return cityRegex.test(searchTerm);
+    };
+
+    checkForValidSearchZip = searchTerm => {
+        return zipRegex.test(searchTerm);
+    };
+
+
+    onClick = () => {
+        if (this.checkForValidSearchCity(this.state.searchTerm)) {
+            alert('valid city entered but search not built');
+        } else if (this.checkForValidSearchZip(this.state.searchTerm)) {
+            alert('valid zip code entered');
+            // this.props.getCurrentWeatherByZip(this.state.searchTerm);
+        }
     };
 
     render() {
         return (
-            <section className="columns">
-                <div className="column is-three-fifths is-offset-one-fifth">
-                    <SearchBar
-                        name="searchTerm"
-                        valueOfUserInput={this.state.searchTerm}
-                        onSearchTermChange={this.onSearchTermChange}
-                    />
-                </div>
-            </section>
+            <React.Fragment>
+                <section className="columns">
+                    <div className="column is-4 is-offset-4">
+                        <SearchBar name="searchTerm" value={this.state.searchTerm} onChange={this.onSearchTermChange} />
+                    </div>
+                </section>
+                <section className="columns">
+                    <div className="column is-centered is-4 is-offset-4">
+                        <GetWeatherButton onClick={this.onClick} />
+                    </div>
+                </section>
+            </React.Fragment>
         );
     }
 }
 
-// mapping state to props from redux
 const mapStateToProps = state => ({
     searchTerm: state.searchTerm,
 });
 
-// Type checking for AddProject
 Dashboard.propTypes = {
-    getCurrentWeather: PropTypes.func.isRequired,
+    getCurrentWeatherByZip: PropTypes.func.isRequired,
 };
 
-// Wiring the create project action to this component
 export default connect(
     mapStateToProps,
-    { getCurrentWeather },
+    { getCurrentWeatherByZip },
 )(Dashboard);

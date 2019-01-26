@@ -1,4 +1,4 @@
-import { GET_CURRENT_WEATHER } from '../actions/types';
+import { GET_CURRENT_WEATHER_BY_ZIP } from '../actions/types';
 
 const initialState = {
     currentWeather: {},
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case GET_CURRENT_WEATHER:
+        case GET_CURRENT_WEATHER_BY_ZIP:
             return {
                 ...state,
                 currentWeather: action.payload,
