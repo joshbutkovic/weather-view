@@ -1,3 +1,16 @@
 input.input:focus {
     box-shadow: none !important;
 }
+
+@media screen and (max-width: 500px) {
+  h1.is-size-3 {
+    font-size: 1.5rem !important;
+  }
+  p.attribution {
+      font-size: 0.65rem !important;
+  }
+  button.button.is-link,
+  input.input.is-medium {
+    font-size: 1.125rem;
+  }
+}

@@ -7,7 +7,7 @@ const SearchBar = ({value, onChange}) => {
     return (
         <div className="search-bar-container control has-icons-left has-icons-right">
             <input
-                className="input is-medium is-rounded search-bar"
+                className="input is-medium search-bar"
                 type="text"
                 placeholder="Enter a City or Zip"
                 value={value}

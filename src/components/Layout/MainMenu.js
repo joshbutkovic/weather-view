@@ -8,20 +8,14 @@ class MainMenu extends Component {
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item">
-                        <FontAwesomeIcon icon="sun" size="2x"/>
+                        <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
                     </Link>
-                </div>
-                <div className="navbar-end">
-                    <div className="navbar-item">
-                        <div className="buttons">
-                            <Link to="/" className="navbar-item">
-                                <FontAwesomeIcon icon="calendar-day" size="2x"/>
-                            </Link>
-                            <Link to="/" className="navbar-item">
-                                <FontAwesomeIcon icon="calendar-week" size="3x"/>
-                            </Link>
-                        </div>
-                    </div>
+                    <Link to="/" className="navbar-item">
+                        <FontAwesomeIcon icon="calendar-week" size="2x"/>
+                    </Link>
+                    <Link to="/" className="navbar-item">
+                        <span className="has-text-weight-semibold is-size-5">About</span>
+                    </Link>
                 </div>
             </nav>
         );

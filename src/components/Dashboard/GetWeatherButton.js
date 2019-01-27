@@ -1,8 +1,8 @@
 import React from 'react';
 
-const GetWeatherButton = (props) => {
+const GetWeatherButton = props => {
     return (
-        <button className="button is-link is-medium is-rounded" onClick={props.onClick}>
+        <button className="button is-link is-medium" onClick={props.onClick}>
             Get Weather
         </button>
     );
