@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './WeatherCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {BarChart} from 'react-easy-chart';
+import { BarChart, PieChart } from 'react-easy-chart';
 
 const WeatherCard = props => {
     const { weather } = props;
@@ -17,7 +17,7 @@ const WeatherCard = props => {
     };
 
     const getCurrentTime = () => {
-        return moment().format('MMMM Do, h:mmA');
+        return moment().format('h:mmA');
     };
 
     const getWindDirection = angle => {
@@ -48,7 +48,6 @@ const WeatherCard = props => {
 
     const getLatestDescriptionIndex = weather => {
         let lastIndex = Object.keys(weather)[Object.keys(weather).length - 1];
-        console.log('last index' + lastIndex);
         return parseInt(lastIndex);
     };
 
@@ -62,42 +61,52 @@ const WeatherCard = props => {
                         </figure>
                     </div>
                     <div className="media-content">
-                        <p className="title is-3">{weather.name}</p>
+                        <p className="title is-3">
+                            {weather.name}
+                        </p>
                     </div>
                 </div>
 
                 <div className="content">
                     <p className="subtitle is-4">
-                        {convertKelvinToFahrenheit(weather.main.temp)}
-                        &nbsp;&deg;F
-                    </p>
-                    <p className="subtitle is-4">
+                        <span className="has-text-link has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp)}</span>
+                        &nbsp;&deg;F&nbsp;
                         {capitalizeFirstLetter(weather.weather[getLatestDescriptionIndex(weather.weather)].description)}
                     </p>
-                    <p className="subtitle is-6">
-                        <strong>Wind</strong>: {weather.wind.speed}
-                        &nbsp; MPH&nbsp;
-                        {getWindDirection(parseFloat(weather.wind.deg))}
-                    </p>
-                    <p className="subtitle is-6">
-                        <strong>Humidity</strong>
+                    <p className="subtitle is-4" />
+                    <div className="columns">
+                        <div className="column">
+                            <p className="subtitle is-6">
+                                <strong>Wind</strong>: {weather.wind.speed}
+                                &nbsp; MPH&nbsp;
+                                {getWindDirection(parseFloat(weather.wind.deg))}
+                            </p>
+                        </div>
+                        <div className="column">
+                            <p className="subtitle is-6">
+                                <strong>Humidity</strong>
+                                :&nbsp;
+                                {weather.main.humidity}
+                                &#37;
+                            </p>
+                        </div>
+                    </div>
+                    <div className="columns">
+                        <div className="column">
+                            <strong>Low Temp</strong>
+                            :&nbsp;
+                            <span className="has-text-primary has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp_min)}</span>
+                            &nbsp;&deg;F&nbsp;
+                        </div>
+                        <div className="column">
+                        <strong>High Temp</strong>
                         :&nbsp;
-                        {weather.main.humidity}
-                        &#37;
-                    </p>
+                        <span className="has-text-danger has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp_max)}</span>
+                        &nbsp;&deg;F&nbsp;
+                    </div>
+
+                    </div>
                 </div>
-                <BarChart
-                    data={[
-                        {x: 'Low', y: convertKelvinToFahrenheit(weather.main.temp_min)},
-                        {x: 'Current', y: convertKelvinToFahrenheit(weather.main.temp)},
-                        {x: 'High', y: convertKelvinToFahrenheit(weather.main.temp_max)},
-                    ]}
-                />
-                <footer className="card-footer">
-                    <p className="card-footer-item">
-                        <time>{getCurrentTime()}</time>
-                    </p>
-                </footer>
             </div>
         </div>
     );

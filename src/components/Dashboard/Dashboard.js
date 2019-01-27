@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './Dashboard.scss';
+import posed from 'react-pose';
 import { connect } from 'react-redux';
 import { getCurrentWeatherByZip, getCurrentWeatherByCity } from '../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../configuration/regex';
@@ -8,13 +9,20 @@ import SearchBar from './SearchBar/SearchBar';
 import GetWeatherButton from './GetWeatherButton';
 import WeatherCard from './WeatherCard/WeatherCard';
 
+// Pose Animations
+const WeatherCardAnimation = posed.div({
+    hidden: { y:-10, x:10, opacity: 0, transition: { duration: 200 } },
+    visible: { y:0, x:0, opacity: 1, transition: { duration: 200 } },
+});
+
 class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
             searchTerm: '',
             selectedSearchParameter: '',
-            searchTitle: "Current Weather",
+            searchTitle: 'Current Weather',
+            isResultVisible: false,
         };
     }
 
@@ -40,7 +48,6 @@ class Dashboard extends Component {
 
     getWeather = () => {
         if (this.checkForValidSearchCity(this.state.searchTerm)) {
-            console.log('calling city');
             this.props.getCurrentWeatherByCity(this.state.searchTerm);
         } else if (this.checkForValidSearchZip(this.state.searchTerm)) {
             this.props.getCurrentWeatherByZip(this.state.searchTerm);
@@ -51,17 +58,26 @@ class Dashboard extends Component {
 
     onClick = () => {
         this.getWeather();
+        this.setState({
+            isResultVisible: !this.state.isResultVisible,
+        });
     };
 
     render() {
         const { currentWeather } = this.props.weather;
+        let _isResultVisible = this.state.isResultVisible;
+        let result;
+
+        if (typeof currentWeather.name !== 'undefined') {
+            _isResultVisible = true;
+        }
 
         return (
             <React.Fragment>
                 <section className="section" onKeyPress={this.onKeyPress}>
                     <div className="container">
                         <section className="columns">
-                            <div className="column is-10-mobile is-offset-1-mobile is-6 is-offset-3">
+                            <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                 <h1 className="is-size-3">{this.state.searchTitle}</h1>
                                 <p className="attribution">
                                     Powered by <a href={'https://openweathermap.org'}>https://openweathermap.org</a>
@@ -69,7 +85,7 @@ class Dashboard extends Component {
                             </div>
                         </section>
                         <section className="columns">
-                            <div className="column is-10-mobile is-offset-1-mobile is-6 is-offset-3">
+                            <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                 <SearchBar
                                     name="searchTerm"
                                     value={this.state.searchTerm}
@@ -78,17 +94,21 @@ class Dashboard extends Component {
                             </div>
                         </section>
                         <section className="columns">
-                            <div className="column is-10-mobile is-offset-1-mobile is-6 is-offset-3">
+                            <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                 <GetWeatherButton onClick={this.onClick} />
                             </div>
                         </section>
-                        {typeof currentWeather.name !== 'undefined' ? (
-                            <section className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile column is-6 is-offset-3">
-                                    <WeatherCard weather={currentWeather} />
-                                </div>
-                            </section>
-                        ) : null}
+                        <section className="columns">
+                            <div className="column is-10-mobile is-offset-1-mobile column is-8 is-offset-2">
+                                <WeatherCardAnimation
+                                    key="animation"
+                                    className="animation"
+                                    pose={_isResultVisible ? 'visible' : 'hidden'}
+                                >
+                                    {_isResultVisible && <WeatherCard weather={currentWeather} />}
+                                </WeatherCardAnimation>
+                            </div>
+                        </section>
                     </div>
                 </section>
             </React.Fragment>
@@ -103,7 +123,7 @@ const mapStateToProps = state => ({
 
 Dashboard.propTypes = {
     getCurrentWeatherByZip: PropTypes.func.isRequired,
-    getCurrentWeatherByCity: PropTypes.func.isRequired
+    getCurrentWeatherByCity: PropTypes.func.isRequired,
 };
 
 export default connect(
