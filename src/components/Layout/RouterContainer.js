@@ -5,20 +5,24 @@ import Dashboard from '../Dashboard/Dashboard';
 import About from '../About/About';
 
 const RouteTransitionWrapper = posed.div({
-    enter: { opacity: 1},
-    exit: { opacity: 0 }
+    enter: { opacity: 1 },
+    exit: { opacity: 0 },
 });
 
-const RouterContainer = ({ location }) => {
+const RouterContainer = () => {
     return (
-        <PoseGroup>
-            <RouteTransitionWrapper key={location.key}>
-                <Switch location={location}>
-                    <Route exact path="/" component={Dashboard} key={'home'} />
-                    <Route path="/about" component={About} key={'about'} />
-                </Switch>
-            </RouteTransitionWrapper>
-        </PoseGroup>
+        <Route
+            render={({ location }) => (
+                <PoseGroup>
+                    <RouteTransitionWrapper key={location.pathname}>
+                        <Switch location={location}>
+                            <Route exact path="/" component={Dashboard} key={'home'} />
+                            <Route path="/about" component={About} key={'about'} />
+                        </Switch>
+                    </RouteTransitionWrapper>
+                </PoseGroup>
+            )}
+        />
     );
 };
 
