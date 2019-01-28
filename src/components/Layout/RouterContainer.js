@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import posed, { PoseGroup } from 'react-pose';
-import Dashboard from '../Dashboard/Dashboard';
+import GetWeather from '../GetWeather/GetWeather';
 import About from '../About/About';
 
 const RouteTransitionWrapper = posed.div({
@@ -16,7 +16,7 @@ const RouterContainer = () => {
                 <PoseGroup>
                     <RouteTransitionWrapper key={location.pathname}>
                         <Switch location={location}>
-                            <Route exact path="/" component={Dashboard} key={'home'} />
+                            <Route exact path="/" component={GetWeather} key={'get'} />
                             <Route path="/about" component={About} key={'about'} />
                         </Switch>
                     </RouteTransitionWrapper>
@@ -26,4 +26,4 @@ const RouterContainer = () => {
     );
 };
 
-export default withRouter(RouterContainer);
+export default RouterContainer;
