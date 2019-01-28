@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './WeatherCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { BarChart, PieChart } from 'react-easy-chart';
 
 const WeatherCard = props => {
     const { weather } = props;
@@ -61,15 +60,15 @@ const WeatherCard = props => {
                         </figure>
                     </div>
                     <div className="media-content">
-                        <p className="title is-3">
-                            {weather.name}
-                        </p>
+                        <p className="title is-3">{weather.name}</p>
                     </div>
                 </div>
 
                 <div className="content">
                     <p className="subtitle is-4">
-                        <span className="has-text-link has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp)}</span>
+                        <span className="has-text-link has-text-weight-bold is-3">
+                            {convertKelvinToFahrenheit(weather.main.temp)}
+                        </span>
                         &nbsp;&deg;F&nbsp;
                         {capitalizeFirstLetter(weather.weather[getLatestDescriptionIndex(weather.weather)].description)}
                     </p>
@@ -95,16 +94,24 @@ const WeatherCard = props => {
                         <div className="column">
                             <strong>Low Temp</strong>
                             :&nbsp;
-                            <span className="has-text-primary has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp_min)}</span>
+                            <span className="has-text-primary has-text-weight-bold is-3">
+                                {convertKelvinToFahrenheit(weather.main.temp_min)}
+                            </span>
                             &nbsp;&deg;F&nbsp;
                         </div>
                         <div className="column">
-                        <strong>High Temp</strong>
-                        :&nbsp;
-                        <span className="has-text-danger has-text-weight-bold is-3">{convertKelvinToFahrenheit(weather.main.temp_max)}</span>
-                        &nbsp;&deg;F&nbsp;
+                            <strong>High Temp</strong>
+                            :&nbsp;
+                            <span className="has-text-danger has-text-weight-bold is-3">
+                                {convertKelvinToFahrenheit(weather.main.temp_max)}
+                            </span>
+                            &nbsp;&deg;F&nbsp;
+                        </div>
                     </div>
-
+                    <div className="columns">
+                        <div className="column">
+                            <p className="is-badge-small has-text-grey-light is-italic">{getCurrentTime()}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,6 +119,8 @@ const WeatherCard = props => {
     );
 };
 
-// WeatherCard.propTypes = {};
+WeatherCard.propTypes = {
+    weather: PropTypes.object.isRequired,
+};
 
 export default WeatherCard;

@@ -11,8 +11,8 @@ import WeatherCard from './WeatherCard/WeatherCard';
 
 // Pose Animations
 const WeatherCardAnimation = posed.div({
-    hidden: { y:-10, x:10, opacity: 0, transition: { duration: 200 } },
-    visible: { y:0, x:0, opacity: 1, transition: { duration: 200 } },
+    hidden: { y: -10, x: 10, opacity: 0, transition: { duration: 200 } },
+    visible: { y: 0, x: 0, opacity: 1, transition: { duration: 200 } },
 });
 
 class Dashboard extends Component {
@@ -57,16 +57,16 @@ class Dashboard extends Component {
     };
 
     onClick = () => {
-        this.getWeather();
-        this.setState({
-            isResultVisible: !this.state.isResultVisible,
-        });
+        if(this.state.searchTerm.length > 2) {
+            this.getWeather();
+        } else {
+            alert('Must be at least 3 characters');
+        }
     };
 
     render() {
         const { currentWeather } = this.props.weather;
         let _isResultVisible = this.state.isResultVisible;
-        let result;
 
         if (typeof currentWeather.name !== 'undefined') {
             _isResultVisible = true;

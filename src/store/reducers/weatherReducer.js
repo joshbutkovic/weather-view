@@ -17,7 +17,6 @@ export default function(state = initialState, action) {
                 ...state,
                 currentWeather: action.payload,
             };
-
         default:
             return state;
     }
