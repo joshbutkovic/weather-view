@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60ab9488-9430-4d58-953b-47e58fed6d88" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/store/reducers/errorReducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WeatherViewApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/WeatherViewApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GetWeather/GetWeather.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/GetWeather.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GetWeather/GetWeather.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/GetWeather.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GetWeather/GetWeatherButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/GetWeatherButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/GetWeather/SearchBar/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/SearchBar/SearchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/poseAnimations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/poseAnimations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/types.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/weatherActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/weatherActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/history.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/weatherReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/weatherReducer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,11 +21,34 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/GetWeather/GetWeather.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="136" column="34" lean-forward="true" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
+            <state relative-caret-position="168">
+              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/reducers/errorReducer.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/reducers/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/store/actions/types.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -108,7 +131,6 @@
         <option value="$PROJECT_DIR$/src/components/GetWeather/GetWeatherOld.js" />
         <option value="$PROJECT_DIR$/src/store/history.js" />
         <option value="$PROJECT_DIR$/src/components/ShowWeather/ShowWeather.js" />
-        <option value="$PROJECT_DIR$/src/store/actions/types.js" />
         <option value="$PROJECT_DIR$/src/store/reducers/weatherReducer.js" />
         <option value="$PROJECT_DIR$/src/store/actions/weatherActions.js" />
         <option value="$PROJECT_DIR$/src/components/GetWeather/WeatherCard/WeatherCard.scss" />
@@ -121,6 +143,8 @@
         <option value="$PROJECT_DIR$/src/components/GetWeather/GetWeatherButton.js" />
         <option value="$PROJECT_DIR$/src/components/GetWeather/GetWeather.scss" />
         <option value="$PROJECT_DIR$/src/WeatherViewApp.js" />
+        <option value="$PROJECT_DIR$/src/store/reducers/index.js" />
+        <option value="$PROJECT_DIR$/src/store/actions/types.js" />
         <option value="$PROJECT_DIR$/src/components/GetWeather/GetWeather.js" />
       </list>
     </option>
@@ -198,6 +222,19 @@
               <item name="weather-view" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="store" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="weather-view" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="store" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="actions" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="weather-view" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="utils" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
@@ -212,6 +249,15 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
     <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store/actions" />
+      <recent name="$PROJECT_DIR$/src/store" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store/reducers" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -249,12 +295,12 @@
       <workItem from="1548648877123" duration="2373000" />
       <workItem from="1548727493671" duration="228000" />
       <workItem from="1548727735118" duration="8926000" />
-      <workItem from="1548785413038" duration="2694000" />
+      <workItem from="1548785413038" duration="3201000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102401000" />
+    <option name="totallyTimeSpent" value="102908000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1382" extended-state="0" />
@@ -419,23 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/reducers/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/actions/types.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/weatherUtils.js" />
     <entry file="file://$PROJECT_DIR$/src/store/store.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -553,13 +582,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/errorReducer.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/store/actions/types.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/GetWeather/GetWeather.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="136" column="34" lean-forward="true" selection-start-line="136" selection-start-column="34" selection-end-line="136" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="168">
+          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
