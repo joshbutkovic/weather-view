@@ -1,33 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Dashboard.scss';
-import posed from 'react-pose';
+import './GetWeather.scss';
 import { connect } from 'react-redux';
-import { getCurrentWeatherByZip, getCurrentWeatherByCity, deleteCurrentWeather } from '../../store/actions/weatherActions';
+import {
+    getCurrentWeatherByZip,
+    getCurrentWeatherByCity,
+    deleteCurrentWeather,
+} from '../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../configuration/regex';
+import { GetWeatherAnimation } from '../../utils/poseAnimations';
 import SearchBar from './SearchBar/SearchBar';
 import GetWeatherButton from './GetWeatherButton';
 import WeatherCard from './WeatherCard/WeatherCard';
-
-// Pose Animations
-const WeatherCardAnimation = posed.div({
-    hidden: { y: -10, x: 10, opacity: 0, transition: { duration: 500 } },
-    visible: { y: 0, x: 0, opacity: 1, transition: { duration: 500 } },
-});
-
-// const Paragraphs = posed.p({
-//     enter: {x:20, opacity: 1 },
-//     exit: {x:0, opacity: 0 }
-// });
-
-const Container = posed.div({
-    enter: { staggerChildren: 50 }
-});
-
-const Paragraphs = posed.p({
-    enter: {x:20, opacity: 1 },
-    exit: {x:0, opacity: 0 }
-});
 
 class GetWeather extends Component {
     constructor() {
@@ -36,8 +20,12 @@ class GetWeather extends Component {
             searchTerm: '',
             selectedSearchParameter: '',
             searchTitle: 'Current Weather',
-            isResultVisible: false,
+            isSearchFadedIn: false,
         };
+    }
+
+    componentDidMount() {
+        this.setState({ isSearchFadedIn: true });
     }
 
     onSearchTermChange = e => {
@@ -91,68 +79,71 @@ class GetWeather extends Component {
 
     render() {
         const { currentWeather } = this.props.weather;
+        const result = this.isWeatherResultEmpty(currentWeather);
+        const { isSearchFadedIn } = this.state;
 
-        let Content;
-
-        const ContentRenderer = (result) => {
-            if (result) {
-                return (
-
-                    <section className="section" onKeyPress={this.onKeyPress}>
-                        <div className="container">
-                            <div className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                    <h1 className="is-size-3">{this.state.searchTitle}</h1>
-                                    <p className="attribution">
-                                        Powered by <a href={'https://openweathermap.org'}>https://openweathermap.org</a>
-                                    </p>
+        return (
+            <React.Fragment>
+                <GetWeatherAnimation
+                    key="search"
+                    className="search"
+                    initialPose={isSearchFadedIn ? 'visible' : 'hidden'}
+                    pose={result ? 'visible' : 'hidden'}
+                >
+                    {result && (
+                        <section className="section" onKeyPress={this.onKeyPress}>
+                            <div className="container">
+                                <div className="columns">
+                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                        <h1 className="is-size-3">{this.state.searchTitle}</h1>
+                                        <p className="attribution">
+                                            Powered by <a
+                                            href={'https://openweathermap.org'}>https://openweathermap.org</a>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                    <SearchBar
-                                        name="searchTerm"
-                                        value={this.state.searchTerm}
-                                        onChange={this.onSearchTermChange}
-                                    />
+                                <div className="columns">
+                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                        <SearchBar
+                                            name="searchTerm"
+                                            value={this.state.searchTerm}
+                                            onChange={this.onSearchTermChange}
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                    <GetWeatherButton onClick={this.onClick}/>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                );
-            } else {
-                return (
-
-                        <section className="container">
-                            <div className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                    <section className="columns">
-                                        <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                            <button className="button is-small is-link"
-                                                    onClick={this.onBackToSearchClick}>
-                                                Back to Search
-                                            </button>
-                                            <WeatherCard weather={currentWeather}/>
-                                        </div>
-                                    </section>
+                                <div className="columns">
+                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                        <GetWeatherButton onClick={this.onClick}/>
+                                    </div>
                                 </div>
                             </div>
                         </section>
-                );
-            }
-        };
-
-        Content = ContentRenderer(this.isWeatherResultEmpty(currentWeather));
-
-        return Content;
+                    )}
+                </GetWeatherAnimation>
+                <GetWeatherAnimation
+                    key="weather"
+                    className="weather"
+                    pose={!result ? 'visible' : 'hidden'}
+                >
+                    {!result && (
+                        <section className="section">
+                            <div className="container">
+                                <div className="columns">
+                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                        <button className="button is-small is-link"
+                                                onClick={this.onBackToSearchClick}>
+                                            Back to Search
+                                        </button>
+                                        <WeatherCard weather={currentWeather}/>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    )}
+                </GetWeatherAnimation>
+            </React.Fragment>
+        );
     }
-
-
 }
 
 const mapStateToProps = state => ({
@@ -163,7 +154,7 @@ const mapStateToProps = state => ({
 GetWeather.propTypes = {
     getCurrentWeatherByZip: PropTypes.func.isRequired,
     getCurrentWeatherByCity: PropTypes.func.isRequired,
-    deleteCurrentWeather: PropTypes.func.isRequired
+    deleteCurrentWeather: PropTypes.func.isRequired,
 };
 
 export default connect(
