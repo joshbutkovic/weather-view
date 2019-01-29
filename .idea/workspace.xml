@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60ab9488-9430-4d58-953b-47e58fed6d88" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/CurrentWeather/CurrentWeather.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/GetWeather.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/Dashboard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/GetWeatherButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/GetWeatherButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/SearchBar/SearchBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/SearchBar/SearchBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/SearchBar/SearchBar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/SearchBar/SearchBar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/WeatherCard/WeatherCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/WeatherCard/WeatherCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Dashboard/WeatherCard/WeatherCard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GetWeather/WeatherCard/WeatherCard.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Layout/RouterContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/RouterContainer.js" afterDir="false" />
-    </list>
+    <list default="true" id="60ab9488-9430-4d58-953b-47e58fed6d88" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/GetWeather/GetWeather.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+            <state relative-caret-position="169">
+              <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -248,18 +237,18 @@
       <workItem from="1548611897382" duration="5480000" />
       <workItem from="1548619088408" duration="4822000" />
       <workItem from="1548635543015" duration="2240000" />
-      <workItem from="1548648877123" duration="2276000" />
+      <workItem from="1548648877123" duration="2373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79455000" />
+    <option name="totallyTimeSpent" value="79552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14872068" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14872068" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -272,7 +261,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3058455" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3058455" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -487,8 +476,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/GetWeather/GetWeather.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="70" column="31" lean-forward="true" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
+        <state relative-caret-position="169">
+          <caret line="71" column="9" lean-forward="true" selection-start-line="71" selection-start-column="9" selection-end-line="71" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
