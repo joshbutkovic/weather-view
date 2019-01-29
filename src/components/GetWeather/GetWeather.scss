@@ -2,6 +2,10 @@ input.input:focus {
     box-shadow: none !important;
 }
 
+button.is-small.is-link {
+  margin-bottom: 0.5rem !important;
+}
+
 @media screen and (max-width: 500px) {
   h1.is-size-3 {
     font-size: 1.5rem !important;

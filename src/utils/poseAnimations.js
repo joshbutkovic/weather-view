@@ -20,7 +20,24 @@ export const Input = posed.input({
         scale: 1
     },
     focus: {
-        scale: 1.05
+        scale: 1.0125
+    }
+});
+
+export const Button = posed.div({
+    hoverable: true,
+    pressable: true,
+    init: {
+        scale: 1,
+        boxShadow: '0px 0px 0px rgba(0,0,0,0)'
+    },
+    hover: {
+        scale: 1.0125,
+        boxShadow: '0px 2px 4px rgba(0,0,0,0.2)'
+    },
+    press: {
+        scale: 1.06125,
+        boxShadow: '0px 1px 2px rgba(0,0,0,0.1)'
     }
 });
 

@@ -8,7 +8,8 @@ import {
     deleteCurrentWeather,
 } from '../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../configuration/regex';
-import { GetWeatherAnimation, PosedSearchBar } from '../../utils/poseAnimations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { GetWeatherAnimation, Button } from '../../utils/poseAnimations';
 import SearchBar from './SearchBar/SearchBar';
 import GetWeatherButton from './GetWeatherButton';
 import WeatherCard from './WeatherCard/WeatherCard';
@@ -73,8 +74,13 @@ class GetWeather extends Component {
     };
 
     onSearchBarFocus = () => {
-        console.log('search bar focused');
         this.setState({ isSearchFocused: true });
+    }
+
+    onGetWeatherClick = (e) => {
+        if(!e.target.classList.contains('search-bar')) {
+            this.setState({ isSearchFocused: false });
+        }
     }
 
     isWeatherResultEmpty = obj => {
@@ -88,7 +94,6 @@ class GetWeather extends Component {
         const { currentWeather } = this.props.weather;
         const result = this.isWeatherResultEmpty(currentWeather);
         const { isSearchFadedIn } = this.state;
-        const { isSearchFocused } = this.state;
 
         return (
             <React.Fragment>
@@ -99,7 +104,10 @@ class GetWeather extends Component {
                     pose={result ? 'visible' : 'hidden'}
                 >
                     {result && (
-                        <section className="section" onKeyPress={this.onKeyPress}>
+                        <section className="section"
+                                 onKeyPress={this.onKeyPress}
+                                 onClick={this.onGetWeatherClick}
+                        >
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
@@ -117,7 +125,6 @@ class GetWeather extends Component {
                                                 value={this.state.searchTerm}
                                                 onChange={this.onSearchTermChange}
                                                 onFocus={this.onSearchBarFocus}
-                                                isFocused={this.state.isSearchFocused}
                                             />
                                     </div>
                                 </div>
@@ -140,10 +147,11 @@ class GetWeather extends Component {
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <button className="button is-small is-link"
+                                        <Button className="button is-small is-link"
                                                 onClick={this.onBackToSearchClick}>
+                                            <FontAwesomeIcon icon="arrow-left"/>&nbsp;
                                             Back to Search
-                                        </button>
+                                        </Button>
                                         <WeatherCard weather={currentWeather}/>
                                     </div>
                                 </div>
