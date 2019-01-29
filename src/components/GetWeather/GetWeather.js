@@ -32,6 +32,11 @@ class GetWeather extends Component {
         });
     };
 
+    onBackToSearchClick = () => {
+        console.log('on back to search click');
+        this.setState({ isResultVisible: false });
+    };
+
     checkForValidSearchCity = searchTerm => {
         return cityRegex.test(searchTerm);
     };
@@ -64,67 +69,62 @@ class GetWeather extends Component {
         }
     };
 
+    isWeatherResultEmpty = obj => {
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) return false;
+        }
+        return true;
+    };
+
     render() {
         const { currentWeather } = this.props.weather;
-        let _isResultVisible = this.state.isResultVisible;
-        if (typeof currentWeather.name !== 'undefined') {
-            _isResultVisible = true;
-        }
 
-        return (
-                <section className="section" onKeyPress={this.onKeyPress}>
-                    <div className="container">
-                        {!_isResultVisible && (
-                            <React.Fragment>
-                                <section className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <h1 className="is-size-3">{this.state.searchTitle}</h1>
-                                        <p className="attribution">
-                                            Powered by{' '}
-                                            <a href={'https://openweathermap.org'}>https://openweathermap.org</a>
-                                        </p>
-                                    </div>
-                                </section>
-                                <section className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <SearchBar
-                                            name="searchTerm"
-                                            value={this.state.searchTerm}
-                                            onChange={this.onSearchTermChange}
-                                        />
-                                    </div>
-                                </section>
-                                <section className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <GetWeatherButton onClick={this.onClick} />
-                                    </div>
-                                </section>
-                            </React.Fragment>
-                        )}
+        let WeatherContent;
 
-                        {_isResultVisible && (
+        const weatherContentRenderer = currentWeather => {
+            if (this.isWeatherResultEmpty(currentWeather)) {
+                return (
+                    <section className="section" onKeyPress={this.onKeyPress}>
+                        <div className="container">
                             <section className="columns">
-                                <div className="column is-10-mobile is-offset-1-mobile column is-8 is-offset-2">
-                                    <button
-                                        className="button is-small is-link"
-                                        onClick={() => _isResultVisible = false}
-                                    >
-                                        Back to Search
-                                    </button>
-                                    <WeatherCardAnimation
-                                        key="animation"
-                                        className="animation"
-                                        pose={_isResultVisible ? 'visible' : 'hidden'}
-                                    >
-                                        <WeatherCard weather={currentWeather} />
-                                    </WeatherCardAnimation>
+                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                    <h1 className="is-size-3">{this.state.searchTitle}</h1>
+                                    <p className="attribution">
+                                        Powered by <a href={'https://openweathermap.org'}>https://openweathermap.org</a>
+                                    </p>
                                 </div>
                             </section>
-                            )}
+                            <section className="columns">
+                                <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                    <GetWeatherButton onClick={this.onClick} />
+                                </div>
+                            </section>
+                        </div>
+                    </section>
+                );
+            } else {
+                return (
+                    <section className="columns">
+                        <div className="column is-10-mobile is-offset-1-mobile column is-8 is-offset-2">
+                            <button className="button is-small is-link" onClick={this.onBackToSearchClick}>
+                                Back to Search
+                            </button>
+                            {/*<WeatherCardAnimation*/}
+                            {/*key="animation"*/}
+                            {/*className="animation"*/}
+                            {/*pose={_isResultVisible ? 'visible' : 'hidden'}*/}
+                            {/*>*/}
+                            <WeatherCard weather={currentWeather} />
+                            {/*</WeatherCardAnimation>*/}
+                        </div>
+                    </section>
+                );
+            }
+        };
 
-                    </div>
-                </section>
-        );
+        WeatherContent = weatherContentRenderer(currentWeather);
+
+        return WeatherContent;
     }
 }
 
