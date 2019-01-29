@@ -1,4 +1,4 @@
-import { GET_CURRENT_WEATHER_BY_CITY, GET_CURRENT_WEATHER_BY_ZIP } from '../actions/types';
+import { GET_CURRENT_WEATHER_BY_CITY, GET_CURRENT_WEATHER_BY_ZIP, DELETE_CURRENT_WEATHER } from '../actions/types';
 
 const initialState = {
     forecast: [],
@@ -13,6 +13,11 @@ export default function(state = initialState, action) {
                 currentWeather: action.payload,
             };
         case GET_CURRENT_WEATHER_BY_CITY:
+            return {
+                ...state,
+                currentWeather: action.payload,
+            };
+        case DELETE_CURRENT_WEATHER:
             return {
                 ...state,
                 currentWeather: action.payload,
