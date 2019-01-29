@@ -8,7 +8,7 @@ import {
     deleteCurrentWeather,
 } from '../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../configuration/regex';
-import { GetWeatherAnimation } from '../../utils/poseAnimations';
+import { GetWeatherAnimation, PosedSearchBar } from '../../utils/poseAnimations';
 import SearchBar from './SearchBar/SearchBar';
 import GetWeatherButton from './GetWeatherButton';
 import WeatherCard from './WeatherCard/WeatherCard';
@@ -21,6 +21,7 @@ class GetWeather extends Component {
             selectedSearchParameter: '',
             searchTitle: 'Current Weather',
             isSearchFadedIn: false,
+            isSearchFocused: false,
         };
     }
 
@@ -66,9 +67,15 @@ class GetWeather extends Component {
         if (this.state.searchTerm.length > 2) {
             this.getWeather();
         } else {
+            //TODO Error handling
             alert('Must be at least 3 characters');
         }
     };
+
+    onSearchBarFocus = () => {
+        console.log('search bar focused');
+        this.setState({ isSearchFocused: true });
+    }
 
     isWeatherResultEmpty = obj => {
         for (let key in obj) {
@@ -81,6 +88,7 @@ class GetWeather extends Component {
         const { currentWeather } = this.props.weather;
         const result = this.isWeatherResultEmpty(currentWeather);
         const { isSearchFadedIn } = this.state;
+        const { isSearchFocused } = this.state;
 
         return (
             <React.Fragment>
@@ -104,11 +112,13 @@ class GetWeather extends Component {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <SearchBar
-                                            name="searchTerm"
-                                            value={this.state.searchTerm}
-                                            onChange={this.onSearchTermChange}
-                                        />
+                                            <SearchBar
+                                                name="searchTerm"
+                                                value={this.state.searchTerm}
+                                                onChange={this.onSearchTermChange}
+                                                onFocus={this.onSearchBarFocus}
+                                                isFocused={this.state.isSearchFocused}
+                                            />
                                     </div>
                                 </div>
                                 <div className="columns">

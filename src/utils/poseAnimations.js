@@ -13,3 +13,14 @@ export const GetWeatherAnimation = posed.div({
     hidden: { y: -10, x: -10, opacity: 0, transition: { duration: 250 } },
     visible: { y: 0, x: 0, opacity: 1, transition: { duration: 250 } },
 });
+
+export const Input = posed.input({
+    focusable: true,
+    init: {
+        scale: 1
+    },
+    focus: {
+        scale: 1.05
+    }
+});
+
