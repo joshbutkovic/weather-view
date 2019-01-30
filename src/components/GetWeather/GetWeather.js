@@ -6,9 +6,11 @@ import {
     getCurrentWeatherByZip,
     getCurrentWeatherByCity,
     deleteCurrentWeather,
+    setError,
+    clearError
 } from '../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../configuration/regex';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetWeatherAnimation, Button } from '../../utils/poseAnimations';
 import SearchBar from './SearchBar/SearchBar';
 import GetWeatherButton from './GetWeatherButton';
@@ -57,31 +59,34 @@ class GetWeather extends Component {
     getWeather = () => {
         if (this.checkForValidSearchCity(this.state.searchTerm)) {
             this.props.getCurrentWeatherByCity(this.state.searchTerm);
+            this.props.clearError();
         } else if (this.checkForValidSearchZip(this.state.searchTerm)) {
             this.props.getCurrentWeatherByZip(this.state.searchTerm);
+            this.props.clearError();
         } else {
-            alert('handle ERROR: invalid search term');
+            this.props.setError('Invalid search term');
         }
     };
 
     onClick = () => {
         if (this.state.searchTerm.length > 2) {
             this.getWeather();
+        } else if (this.state.searchTerm.length > 50) {
+            this.props.setError('Search term must not be more than 50 characters');
         } else {
-            //TODO Error handling
-            alert('Must be at least 3 characters');
+            this.props.setError('Search term must be at least 3 characters');
         }
     };
 
     onSearchBarFocus = () => {
         this.setState({ isSearchFocused: true });
-    }
+    };
 
     onGetWeatherClick = (e) => {
-        if(!e.target.classList.contains('search-bar')) {
+        if (!e.target.classList.contains('search-bar')) {
             this.setState({ isSearchFocused: false });
         }
-    }
+    };
 
     isWeatherResultEmpty = obj => {
         for (let key in obj) {
@@ -94,6 +99,7 @@ class GetWeather extends Component {
         const { currentWeather } = this.props.weather;
         const result = this.isWeatherResultEmpty(currentWeather);
         const { isSearchFadedIn } = this.state;
+        const { message } = this.props.error;
 
         return (
             <React.Fragment>
@@ -105,8 +111,8 @@ class GetWeather extends Component {
                 >
                     {result && (
                         <section className="section"
-                                 onKeyPress={this.onKeyPress}
-                                 onClick={this.onGetWeatherClick}
+                             onKeyPress={this.onKeyPress}
+                             onClick={this.onGetWeatherClick}
                         >
                             <div className="container">
                                 <div className="columns">
@@ -120,12 +126,13 @@ class GetWeather extends Component {
                                 </div>
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                            <SearchBar
-                                                name="searchTerm"
-                                                value={this.state.searchTerm}
-                                                onChange={this.onSearchTermChange}
-                                                onFocus={this.onSearchBarFocus}
-                                            />
+                                        <SearchBar
+                                            name="searchTerm"
+                                            value={this.state.searchTerm}
+                                            onChange={this.onSearchTermChange}
+                                            onFocus={this.onSearchBarFocus}
+                                            errorMessage={message}
+                                        />
                                     </div>
                                 </div>
                                 <div className="columns">
@@ -167,15 +174,18 @@ class GetWeather extends Component {
 const mapStateToProps = state => ({
     searchTerm: state.searchTerm,
     weather: state.weather,
+    error: state.error,
 });
 
 GetWeather.propTypes = {
     getCurrentWeatherByZip: PropTypes.func.isRequired,
     getCurrentWeatherByCity: PropTypes.func.isRequired,
     deleteCurrentWeather: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired,
+    clearError: PropTypes.func.isRequired
 };
 
 export default connect(
     mapStateToProps,
-    { getCurrentWeatherByZip, getCurrentWeatherByCity, deleteCurrentWeather },
+    { getCurrentWeatherByZip, getCurrentWeatherByCity, deleteCurrentWeather, setError, clearError},
 )(GetWeather);

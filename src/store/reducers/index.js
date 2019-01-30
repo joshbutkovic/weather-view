@@ -4,5 +4,5 @@ import errorReducer from './errorReducer';
 
 export default combineReducers({
     weather: weatherReducer,
-    errors: errorReducer
+    error: errorReducer
 });

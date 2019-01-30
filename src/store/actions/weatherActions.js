@@ -1,19 +1,24 @@
 import axios from 'axios';
-import { GET_CURRENT_WEATHER_BY_ZIP, GET_CURRENT_WEATHER_BY_CITY, DELETE_CURRENT_WEATHER } from './types';
+import { GET_CURRENT_WEATHER_BY_ZIP, GET_CURRENT_WEATHER_BY_CITY, DELETE_CURRENT_WEATHER, SET_ERROR, CLEAR_ERROR } from './types';
 import { getCurrentWeatherByCityUrl, getCurrentWeatherByZipUrl } from '../../configuration/apiConfig';
 
-export const getCurrentWeatherByZip = (zip, history) => async dispatch => {
-    const res = await axios.get(getCurrentWeatherByZipUrl(zip));
-    // history.push('/show');
-    dispatch({
-        type: GET_CURRENT_WEATHER_BY_ZIP,
-        payload: res.data,
-    });
+export const getCurrentWeatherByZip = (zip) => async dispatch => {
+    try {
+        const res = await axios.get(getCurrentWeatherByZipUrl(zip));
+        dispatch({
+            type: GET_CURRENT_WEATHER_BY_ZIP,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: 'No location found for that zip',
+        });
+    }
 };
 
-export const getCurrentWeatherByCity = (city, history) => async dispatch => {
+export const getCurrentWeatherByCity = (city) => async dispatch => {
     const res = await axios.get(getCurrentWeatherByCityUrl(city));
-    // history.push('/show');
     dispatch({
         type: GET_CURRENT_WEATHER_BY_CITY,
         payload: res.data,
@@ -25,4 +30,18 @@ export const deleteCurrentWeather = () => async dispatch => {
             type: DELETE_CURRENT_WEATHER,
             payload: {},
         });
+};
+
+export const setError = (error) => async dispatch => {
+    dispatch({
+        type: SET_ERROR,
+        payload: error,
+    });
+};
+
+export const clearError = () => async dispatch => {
+    dispatch({
+        type: CLEAR_ERROR,
+        payload: {},
+    });
 };

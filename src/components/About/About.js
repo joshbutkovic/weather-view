@@ -10,14 +10,12 @@ const About = () => (
                         <h2 className="is-size-3">About WeatherView</h2>
                         <Paragraph className="is-italic">
                         <span className="subtitle">
-                            Simply dummy text of the
-                            printing and typesetting industry.
+                            A neat little react app to query current and future weather.
                         </span>
                         </Paragraph><br/>
+                        <h4 className="is-size-4">Featuring</h4>
                         <Paragraph>
-                            Lorem Ipsum has been the industry's standard dummy text ever since the
-                            1500s, when an unknown printer took a galley of type and scrambled it to
-                            make a type specimen book.
+                            React/Redux
                         </Paragraph><br/>
                         <Paragraph>
                             It has survived not only five centuries, but also the leap into electronic
