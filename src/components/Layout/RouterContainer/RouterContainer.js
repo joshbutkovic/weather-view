@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import posed, { PoseGroup } from 'react-pose';
-import GetWeather from '../GetWeather/GetWeather';
-import About from '../About/About';
+import GetWeather from '../../Container/GetWeather/GetWeather';
+import About from '../../Container/About/About';
 
 const RouteTransitionWrapper = posed.div({
     enter: { opacity: 1 },

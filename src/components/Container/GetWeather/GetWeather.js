@@ -8,13 +8,13 @@ import {
     deleteCurrentWeather,
     setError,
     clearError
-} from '../../store/actions/weatherActions';
-import { zipRegex, cityRegex } from '../../configuration/regex';
+} from '../../../store/actions/weatherActions';
+import { zipRegex, cityRegex } from '../../../utils/regex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GetWeatherAnimation, Button } from '../../utils/poseAnimations';
-import SearchBar from './SearchBar/SearchBar';
-import GetWeatherButton from './GetWeatherButton';
-import WeatherCard from './WeatherCard/WeatherCard';
+import { GetWeatherAnimation, Button } from '../../../utils/poseAnimations';
+import SearchBar from '../../SearchBar/SearchBar';
+import GetWeatherButton from '../../GetWeatherButton/GetWeatherButton';
+import WeatherCard from '../../WeatherCard/WeatherCard';
 
 class GetWeather extends Component {
     constructor() {

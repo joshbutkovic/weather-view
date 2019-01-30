@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Paragraph } from '../../utils/poseAnimations';
+import { Container, Paragraph } from '../../../utils/poseAnimations';
 
 const About = () => (
     <Container>

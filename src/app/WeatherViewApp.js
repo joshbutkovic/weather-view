@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import './App.scss';
-import store from './store/store';
+import '../scss/WeatherViewApp.scss';
+import store from '../store/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft, faSun, faCloudRain, faRainbow, faCloudSunRain, faCalendarDay, faCalendarWeek, faCalendar, faCity, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router} from 'react-router-dom';
-import RouterContainer from './components/Layout/RouterContainer';
-import MainMenu from './components/Layout/MainMenu';
+import RouterContainer from '../components/Layout/RouterContainer/RouterContainer';
+import MainMenu from '../components/Layout/MainMenu/MainMenu';
 
 library.add(faArrowLeft, faSun, faCloudRain, faRainbow, faCloudSunRain, faCalendarDay, faCalendarWeek, faCalendar, faCity, faSearch);
 

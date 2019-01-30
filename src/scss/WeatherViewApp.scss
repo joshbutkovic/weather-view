@@ -1,6 +1,6 @@
-@import '~bulma/bulma';
-@import '~bulma-extensions/bulma-switch/dist/css/bulma-switch';
-@import './Animation.scss';
+@import '../../node_modules/bulma/bulma';
+@import '../../node_modules/bulma-extensions/bulma-switch/dist/css/bulma-switch';
+@import 'Animation';
 @import url('https://fonts.googleapis.com/css?family=Sarabun');
 
 html, body, input.input {

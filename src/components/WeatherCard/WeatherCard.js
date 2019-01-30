@@ -8,7 +8,7 @@ import {
     getWindDirection,
     convertKelvinToFahrenheit,
     getCurrentTime,
-} from '../../../utils/weatherUtils';
+} from '../../utils/weatherUtils';
 
 const WeatherCard = props => {
     const { weather } = props;

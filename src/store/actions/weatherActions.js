@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { GET_CURRENT_WEATHER_BY_ZIP, GET_CURRENT_WEATHER_BY_CITY, DELETE_CURRENT_WEATHER, SET_ERROR, CLEAR_ERROR } from './types';
-import { getCurrentWeatherByCityUrl, getCurrentWeatherByZipUrl } from '../../configuration/apiConfig';
+import { getCurrentWeatherByCityUrl, getCurrentWeatherByZipUrl } from '../../config/apiConfig';
 
 export const getCurrentWeatherByZip = (zip) => async dispatch => {
     try {
