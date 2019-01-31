@@ -10,9 +10,6 @@ class MainMenu extends Component {
                     <Link to="/" className="navbar-item">
                         <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
                     </Link>
-                    <Link to="/" className="navbar-item">
-                        <FontAwesomeIcon icon="calendar-week" size="2x"/>
-                    </Link>
                     <Link to="/about" className="navbar-item">
                         <span className="has-text-weight-semibold is-size-5">About</span>
                     </Link>

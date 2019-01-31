@@ -14,6 +14,11 @@ export const GetWeatherAnimation = posed.div({
     visible: { y: 0, x: 0, opacity: 1, transition: { duration: 250 } },
 });
 
+export const charPoses = {
+    exit: { opacity: 0, x: -20 },
+    enter: { opacity: 1, x: 0 }
+};
+
 export const Input = posed.input({
     focusable: true,
     init: {
