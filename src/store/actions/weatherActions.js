@@ -2,10 +2,9 @@ import axios from 'axios';
 import {
     GET_CURRENT_WEATHER_BY_ZIP,
     GET_CURRENT_WEATHER_BY_CITY,
-    CLEAR_CURRENT_WEATHER,
     GET_FORECAST_BY_CITY,
     GET_FORECAST_BY_ZIP,
-    CLEAR_FORECAST,
+    CLEAR_WEATHER,
     SET_ERROR,
     CLEAR_ERROR,
 } from './types';
@@ -41,7 +40,7 @@ export const getCurrentWeatherByCity = (city) => async dispatch => {
 
 export const deleteCurrentWeather = () => async dispatch => {
     dispatch({
-        type: CLEAR_CURRENT_WEATHER,
+        type: CLEAR_WEATHER,
         payload: {},
     });
 };
@@ -67,13 +66,6 @@ export const getForecastByCity = (city) => async dispatch => {
     dispatch({
         type: GET_FORECAST_BY_CITY,
         payload: res.data,
-    });
-};
-
-export const clearForecast = () => async dispatch => {
-    dispatch({
-        type: CLEAR_FORECAST,
-        payload: {},
     });
 };
 
