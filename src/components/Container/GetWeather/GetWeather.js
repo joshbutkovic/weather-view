@@ -184,7 +184,7 @@ class GetWeather extends Component {
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                         <div className="columns is-gapless">
-                                            <div className="column is-2">
+                                            <div className="column is-3">
                                                 <label>
                                                     <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
                                                         {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
@@ -240,7 +240,7 @@ class GetWeather extends Component {
                         <section className="section">
                             <div className="container">
                                 <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
+                                    <div className="column is-12">
                                         <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                             <FontAwesomeIcon icon="arrow-left" />
                                             &nbsp; Back to Search

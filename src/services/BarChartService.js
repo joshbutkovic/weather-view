@@ -1,105 +1,55 @@
 import moment from 'moment';
 import _ from 'lodash';
-
+import { convertKelvinToFahrenheit } from '../utils/weatherUtil';
 
 class BarChartService {
-
     constructor(forecast) {
         this.forecast = forecast.list;
-        this.sampleData = [];
         this.processedForecast = [];
+        this.currentDateTime = '';
         this.chartStyle = {};
         this.axisLabel = {};
-        this.allowed = ['dt_txt', 'main[\'temp\']'];
+        this.allowed = [];
         this.init();
     }
 
     init() {
-        console.log(this.filterForecast());
+        this.allowed.push('dt_txt', "main['temp']");
+        this.currentDateTime = moment().format();
     }
 
     filterSnapshot(weatherSnap) {
         return _.pick(weatherSnap, this.allowed);
     }
 
-    filterForecast() {
-        let filteredForecast = [];
-        console.log(this.forecast.length);
-        for (let weatherSnapShot of this.forecast) {
-            let fs = this.filterSnapshot(weatherSnapShot);
-            // let dateInt = parseInt(fs.dt_txt);
-            fs.date = moment(dateInt).format('MM/DD');
-            fs.id = moment(fs).format('D');
-            if(fs.id === 1) {
-                console.log('hey');
+    filterForecastData() {
+        for (let i = 0; i < 12; i++) {
+            let fs = this.filterSnapshot(this.forecast[i]);
+            fs.x = moment(fs.dt_txt).format('M/D ha');
+            fs.y = convertKelvinToFahrenheit(parseInt(fs.main.temp));
+            if (!moment(fs.dt_txt).isBefore(this.currentDateTime)) {
+                delete fs.dt_txt;
+                delete fs.main;
+                this.processedForecast.push(fs);
             }
-            filteredForecast.push(fs);
         }
-        return filteredForecast;
+        return this.processedForecast;
     }
 
     getStyle() {
         this.chartStyle = {
             'text.label': {
-                fill: '#222',
-                fontSize: '15px !important'
-            }
+                fill: '#E9E9E9',
+                fontSize: '17px !important',
+            },
         };
         return this.chartStyle;
     }
 
     getAxisLabels() {
-        this.axisLabel = { x: 'Time', y: 'Temp Fahrenheit' };
+        this.axisLabel = { date: 'Time', temp: 'Temp Fahrenheit' };
         return this.axisLabel;
     }
-
-    getSampleData() {
-        this.sampleData.push(
-            {
-                x: 'A',
-                y: 46,
-            },
-            {
-                x: 'B',
-                y: 26,
-            },
-            {
-                x: 'C',
-                y: 28,
-            },
-            {
-                x: 'D',
-                y: 44,
-            },
-            {
-                x: 'E',
-                y: 55,
-            },
-            {
-                x: 'F',
-                y: 46,
-            },
-            {
-                x: 'G',
-                y: 26,
-            },
-            {
-                x: 'H',
-                y: 28,
-            },
-            {
-                x: 'J',
-                y: 44,
-            },
-            {
-                x: 'I',
-                y: 55,
-            }
-        );
-
-        return this.sampleData;
-    }
-
 }
 
 export default BarChartService;
