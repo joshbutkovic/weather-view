@@ -55,7 +55,6 @@ export const clearWeather = () => async dispatch => {
 export const getForecastByZip = (zip) => async dispatch => {
     try {
         const res = await axios.get(getForecastByZipUrl(zip));
-        console.log(res);
         dispatch({
             type: GET_FORECAST_BY_ZIP,
             payload: res.data,

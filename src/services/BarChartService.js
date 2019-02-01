@@ -1,8 +1,8 @@
 import moment from 'moment';
+import _ from 'lodash';
 
 
 class BarChartService {
-    dt_txt;
 
     constructor(forecast) {
         this.forecast = forecast.list;
@@ -14,34 +14,27 @@ class BarChartService {
     }
 
     init() {
-        this.assembleForecast();
+        console.log(this.filterForecast());
     }
 
-    assembleForecast() {
-        console.log(this.forecast);
+    filterSnapshot(weatherSnap) {
+        // console.log(this.forecast);
+        const allowed = ['dt_txt', 'main[\'temp\']'];
 
-        // let initialDayInteger = parseInt(moment(this.forecast[0].dt_txt).format('D'));
-        //
-        // for (let weatherSnapShot of this.forecast) {
-        //     console.log(weatherSnapShot);
-        //     let timestamp = moment(weatherSnapShot.dt_txt);
-        //     let currentDayInteger = parseInt(timestamp.format('D'));
-        //
-        //     while(initialDayInteger === currentDayInteger) {
-        //         console.log(currentDayInteger);
-        //     }
-        //
-        //     initialDayInteger++;
-        //
-        //     // var month = check.format('M');
-        //     this.processedForecast.push(
-        //         {
-        //             x: moment(timestamp).calendar(),
-        //             y: 55
-        //         }
-        //     )
-        // }
-        // return this.processedForecast;
+        // return _.pick(this.forecast, allowed);
+        const filteredObj = _.pick(weatherSnap, allowed);
+        return filteredObj;
+    }
+
+    filterForecast() {
+        // console.log(this.forecast);
+        let fiveDayForecast = [];
+        for (let weatherSnapShot of this.forecast) {
+            console.log(weatherSnapShot)
+            console.log(this.filterSnapshot(weatherSnapShot));
+
+        }
+        return 'DONE';
     }
 
     averageDailyWeather() {

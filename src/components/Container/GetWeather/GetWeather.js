@@ -117,9 +117,11 @@ class GetWeather extends Component {
     };
 
     onToggleSwitchClick = () => {
+        this.props.clearError();
         this.setState(prevState => {
             return {
                 isForecastToggled: !prevState.isForecastToggled,
+                searchTerm: ''
             };
         });
     };
