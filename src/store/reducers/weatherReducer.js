@@ -13,7 +13,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case GET_CURRENT_WEATHER_BY_ZIP || GET_CURRENT_WEATHER_BY_CITY:
+        case GET_CURRENT_WEATHER_BY_ZIP:
+            return {
+                ...state,
+                currentWeather: action.payload,
+            };
+        case GET_CURRENT_WEATHER_BY_CITY:
             return {
                 ...state,
                 currentWeather: action.payload,
@@ -24,7 +29,12 @@ export default function(state = initialState, action) {
                 currentWeather: action.payload,
                 forecast: []
             };
-        case GET_FORECAST_BY_ZIP || GET_FORECAST_BY_CITY:
+        case GET_FORECAST_BY_ZIP:
+            return {
+                ...state,
+                forecast: action.payload,
+            };
+        case GET_FORECAST_BY_CITY:
             return {
                 ...state,
                 forecast: action.payload,

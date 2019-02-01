@@ -31,14 +31,21 @@ export const getCurrentWeatherByZip = (zip) => async dispatch => {
 };
 
 export const getCurrentWeatherByCity = (city) => async dispatch => {
-    const res = await axios.get(getCurrentWeatherByCityUrl(city));
-    dispatch({
-        type: GET_CURRENT_WEATHER_BY_CITY,
-        payload: res.data,
-    });
+    try {
+        const res = await axios.get(getCurrentWeatherByCityUrl(city));
+        dispatch({
+            type: GET_CURRENT_WEATHER_BY_CITY,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: 'No location found for that city',
+        });
+    }
 };
 
-export const deleteCurrentWeather = () => async dispatch => {
+export const clearWeather = () => async dispatch => {
     dispatch({
         type: CLEAR_WEATHER,
         payload: {},

@@ -6,7 +6,7 @@ import Switch from 'react-toggle-switch';
 import {
     getCurrentWeatherByZip,
     getCurrentWeatherByCity,
-    deleteCurrentWeather,
+    clearWeather,
     getForecastByCity,
     getForecastByZip,
     setError,
@@ -19,13 +19,18 @@ import SplitText from 'react-pose-text';
 import SearchBar from '../../SearchBar/SearchBar';
 import GetWeatherButton from '../../GetWeatherButton/GetWeatherButton';
 import WeatherCard from '../../WeatherCard/WeatherCard';
+import Forecast from '../../Forecast/Forecast';
 
 class GetWeather extends Component {
     constructor() {
         super();
         this.state = {
             searchTerm: '',
+            invalidSearch: '',
+            invalidMinLength: '',
+            invalidMaxLength: '',
             selectedSearchParameter: '',
+            poweredByUrl: 'https://openweathermap.org',
             isSearchFadedIn: false,
             isSearchFocused: false,
             isForecastToggled: false,
@@ -43,7 +48,7 @@ class GetWeather extends Component {
     };
 
     onBackToSearchClick = () => {
-        this.props.deleteCurrentWeather();
+        this.props.clearWeather();
     };
 
     checkForValidSearchCity = searchTerm => {
@@ -61,28 +66,36 @@ class GetWeather extends Component {
     };
 
     getWeather = () => {
-        if (this.checkForValidSearchCity(this.state.searchTerm)) {
-            !this.state.isForecastToggled
-                ? this.props.getCurrentWeatherByCity(this.state.searchTerm)
-                : this.props.getForecastByCity(this.state.searchTerm);
-            this.props.clearError();
-        } else if (this.checkForValidSearchZip(this.state.searchTerm)) {
-            !this.state.isForecastToggled
-                ? this.props.getCurrentWeatherByZip(this.state.searchTerm)
-                : this.props.getForecastByZip(this.state.searchTerm);
-            this.props.clearError();
+        const { searchTerm, isForecastToggled } = this.state;
+        const {
+            getCurrentWeatherByCity,
+            getForecastByCity,
+            getCurrentWeatherByZip,
+            getForecastByZip,
+            clearError,
+            setError,
+        } = this.props;
+
+        if (this.checkForValidSearchCity(searchTerm)) {
+            !isForecastToggled ? getCurrentWeatherByCity(searchTerm) : getForecastByCity(searchTerm);
+            clearError();
+        } else if (this.checkForValidSearchZip(searchTerm)) {
+            !isForecastToggled ? getCurrentWeatherByZip(searchTerm) : getForecastByZip(searchTerm);
+            clearError();
         } else {
-            this.props.setError('Invalid search term');
+            setError('Invalid search term');
         }
     };
 
     onClick = () => {
-        if (this.state.searchTerm.length > 2) {
+        const { length } = this.state.searchTerm;
+        const { setError } = this.props;
+        if (length > 2) {
             this.getWeather();
-        } else if (this.state.searchTerm.length > 50) {
-            this.props.setError('Search term must not be more than 50 characters');
+        } else if (length > 50) {
+            setError('Search term must not be more than 50 characters');
         } else {
-            this.props.setError('Search term must be at least 3 characters');
+            setError('Search term must be at least 3 characters');
         }
     };
 
@@ -114,11 +127,11 @@ class GetWeather extends Component {
     render() {
         const { currentWeather, forecast } = this.props.weather;
         const { message } = this.props.error;
-        const { isSearchFadedIn, isForecastToggled, searchTerm } = this.state;
+        const { isSearchFadedIn, isForecastToggled, searchTerm, poweredByUrl } = this.state;
         const currentWeatherEmpty = this.isWeatherResultEmpty(currentWeather);
         const forecastEmpty = this.isWeatherResultEmpty(forecast);
 
-        let getWeatherView = () => {
+        const getWeatherView = () => {
             if (currentWeatherEmpty && forecastEmpty) {
                 return 'search';
             } else if (!currentWeatherEmpty && forecastEmpty) {
@@ -141,30 +154,17 @@ class GetWeather extends Component {
                     pose={View === 'search' ? 'visible' : 'hidden'}
                 >
                     {View === 'search' && (
-                        <section
-                            className="section"
-                            onKeyPress={this.onKeyPress}
-                            onClick={this.onGetWeatherClick}
-                        >
+                        <section className="section" onKeyPress={this.onKeyPress} onClick={this.onGetWeatherClick}>
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                         <h3 className="is-size-3">
-                                            <SplitText
-                                                initialPose="exit"
-                                                pose="enter"
-                                                charPoses={charPoses}
-                                            >
-                                                {!isForecastToggled
-                                                    ? 'Current Weather'
-                                                    : '5 Day Forecast'}
+                                            <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+                                                {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
                                             </SplitText>
                                         </h3>
                                         <p className="attribution">
-                                            Powered by{' '}
-                                            <a href={'https://openweathermap.org'}>
-                                                https://openweathermap.org
-                                            </a>
+                                            Powered by <a href={poweredByUrl}>{poweredByUrl}</a>
                                         </p>
                                     </div>
                                 </div>
@@ -184,14 +184,8 @@ class GetWeather extends Component {
                                         <div className="columns is-gapless">
                                             <div className="column is-2">
                                                 <label>
-                                                    <SplitText
-                                                        initialPose="exit"
-                                                        pose="enter"
-                                                        charPoses={charPoses}
-                                                    >
-                                                        {!isForecastToggled
-                                                            ? 'Current Weather'
-                                                            : '5 Day Forecast'}
+                                                    <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+                                                        {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
                                                     </SplitText>
                                                 </label>
                                             </div>
@@ -199,7 +193,7 @@ class GetWeather extends Component {
                                                 <Switch
                                                     className="has-background-link"
                                                     onClick={this.onToggleSwitchClick}
-                                                    on={this.state.isForecastToggled}
+                                                    on={isForecastToggled}
                                                 />
                                             </div>
                                         </div>
@@ -224,10 +218,7 @@ class GetWeather extends Component {
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <Button
-                                            className="button is-small is-link"
-                                            onClick={this.onBackToSearchClick}
-                                        >
+                                        <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                             <FontAwesomeIcon icon="arrow-left" />
                                             &nbsp; Back to Search
                                         </Button>
@@ -248,14 +239,11 @@ class GetWeather extends Component {
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <Button
-                                            className="button is-small is-link"
-                                            onClick={this.onBackToSearchClick}
-                                        >
+                                        <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                             <FontAwesomeIcon icon="arrow-left" />
                                             &nbsp; Back to Search
                                         </Button>
-                                        HERE IS THE FORECAST
+                                        <Forecast forecast={forecast} />
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +264,7 @@ const mapStateToProps = state => ({
 GetWeather.propTypes = {
     getCurrentWeatherByZip: PropTypes.func.isRequired,
     getCurrentWeatherByCity: PropTypes.func.isRequired,
-    deleteCurrentWeather: PropTypes.func.isRequired,
+    clearWeather: PropTypes.func.isRequired,
     getForecastByZip: PropTypes.func.isRequired,
     getForecastByCity: PropTypes.func.isRequired,
     setError: PropTypes.func.isRequired,
@@ -288,10 +276,10 @@ export default connect(
     {
         getCurrentWeatherByZip,
         getCurrentWeatherByCity,
-        deleteCurrentWeather,
+        clearWeather,
         getForecastByCity,
         getForecastByZip,
         setError,
         clearError,
-    },
+    }
 )(GetWeather);

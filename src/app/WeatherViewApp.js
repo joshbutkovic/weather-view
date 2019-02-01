@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import '../scss/WeatherViewApp.scss';
+import './WeatherViewApp.scss';
 import store from '../store/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faArrowLeft, faSun, faCloudRain, faRainbow, faCloudSunRain, faCalendarDay, faCalendarWeek, faCalendar, faCity, faSearch } from '@fortawesome/free-solid-svg-icons';

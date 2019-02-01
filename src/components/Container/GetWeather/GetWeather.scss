@@ -3,7 +3,11 @@ input.input:focus {
 }
 
 .is-small {
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.card {
+  box-shadow: none !important;
 }
 
 .switch.on {

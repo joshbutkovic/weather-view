@@ -26,5 +26,6 @@ yarn-error.log*
 .idea/vcs.xml
 .idea/workspace.xml
 /.idea/workspace.xml
+.idea/codeStyles/Project.xml
 
 /src/configuration/apiKey.js
