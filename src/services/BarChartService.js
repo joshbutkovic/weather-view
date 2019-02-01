@@ -10,6 +10,7 @@ class BarChartService {
         this.processedForecast = [];
         this.chartStyle = {};
         this.axisLabel = {};
+        this.allowed = ['dt_txt', 'main[\'temp\']'];
         this.init();
     }
 
@@ -18,27 +19,23 @@ class BarChartService {
     }
 
     filterSnapshot(weatherSnap) {
-        // console.log(this.forecast);
-        const allowed = ['dt_txt', 'main[\'temp\']'];
-
-        // return _.pick(this.forecast, allowed);
-        const filteredObj = _.pick(weatherSnap, allowed);
-        return filteredObj;
+        return _.pick(weatherSnap, this.allowed);
     }
 
     filterForecast() {
-        // console.log(this.forecast);
-        let fiveDayForecast = [];
+        let filteredForecast = [];
+        console.log(this.forecast.length);
         for (let weatherSnapShot of this.forecast) {
-            console.log(weatherSnapShot)
-            console.log(this.filterSnapshot(weatherSnapShot));
-
+            let fs = this.filterSnapshot(weatherSnapShot);
+            // let dateInt = parseInt(fs.dt_txt);
+            fs.date = moment(dateInt).format('MM/DD');
+            fs.id = moment(fs).format('D');
+            if(fs.id === 1) {
+                console.log('hey');
+            }
+            filteredForecast.push(fs);
         }
-        return 'DONE';
-    }
-
-    averageDailyWeather() {
-
+        return filteredForecast;
     }
 
     getStyle() {
