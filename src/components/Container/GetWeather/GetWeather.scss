@@ -43,10 +43,13 @@ input.input:focus {
     font-size: 1.5rem !important;
   }
   p.attribution {
-    font-size: 0.65rem !important;
+    font-size: 0.75rem !important;
   }
   button.button.is-link,
   input.input.is-medium {
     font-size: 1.125rem;
+  }
+  p.has-text-info {
+    font-size: 0.875rem;
   }
 }

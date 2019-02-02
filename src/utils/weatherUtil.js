@@ -1,4 +1,5 @@
 import moment from 'moment';
+import _ from 'lodash';
 
 export const convertKelvinToFahrenheit = kelvinTemp => {
     return parseInt(1.8 * (kelvinTemp - 273) + 32);
@@ -41,4 +42,44 @@ export const getWindDirection = angle => {
 export const getLatestDescriptionIndex = weather => {
     let lastIndex = Object.keys(weather)[Object.keys(weather).length - 1];
     return parseInt(lastIndex);
+};
+
+export const ForecastFilter = {
+    init: (forecast) => {
+        let processedForecast = [];
+        for (let i = 0; i < 12; i++) {
+            let fs = ForecastFilter.filterSnapshot(forecast[i]);
+            fs.x = moment(fs.dt_txt).format('M/D ha');
+            fs.y = convertKelvinToFahrenheit(parseInt(fs.main.temp));
+            fs.color = ForecastFilter.assignBarColor(convertKelvinToFahrenheit(parseInt(fs.main.temp)));
+            if (!moment(fs.dt_txt).isBefore(moment().format())) {
+                delete fs.dt_txt;
+                delete fs.main;
+                processedForecast.push(fs);
+            }
+        }
+        return processedForecast;
+    },
+    filterSnapshot: (weatherSnap) => {
+        let allowed = ['dt_txt', "main['temp']"];
+        return _.pick(weatherSnap, allowed);
+    },
+    assignBarColor: (temp) => {
+        let tempInt = parseInt(temp);
+        if((tempInt < 20)) {
+            return '#0500ff';
+        } else if ((tempInt > 20) && (tempInt < 30)) {
+            return '#00b4ff';
+        } else if ((tempInt > 30) && (tempInt < 50)) {
+            return '#00ff83';
+        } else if ((tempInt > 50) && (tempInt < 70)) {
+            return '#17ff00';
+        } else if ((tempInt > 70) && (tempInt < 90)) {
+            return '#FFdc00';
+        } else if (tempInt > 90) {
+            return '#FF7800';
+        } else {
+            return '#00ffd0"';
+        }
+    }
 };

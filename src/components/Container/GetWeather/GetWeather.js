@@ -120,8 +120,7 @@ class GetWeather extends Component {
         this.props.clearError();
         this.setState(prevState => {
             return {
-                isForecastToggled: !prevState.isForecastToggled,
-                searchTerm: ''
+                isForecastToggled: !prevState.isForecastToggled
             };
         });
     };
@@ -135,6 +134,7 @@ class GetWeather extends Component {
 
         return (
             <React.Fragment>
+
                 <GetWeatherAnimation
                     key="search"
                     className="search"
@@ -146,7 +146,8 @@ class GetWeather extends Component {
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <h3 className="is-size-3">
+                                        <h1 className="is-size-2">WeatherView</h1>
+                                        <h3 className="is-size-5">
                                             <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
                                                 {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
                                             </SplitText>
@@ -196,7 +197,8 @@ class GetWeather extends Component {
                         </section>
                     )}
                 </GetWeatherAnimation>
-                <GetForecastAnimation
+
+                <GetWeatherAnimation
                     key="weather"
                     className="weather"
                     pose={(!currentWeatherEmpty && forecastEmpty) ? 'visible' : 'hidden'}
@@ -216,28 +218,23 @@ class GetWeather extends Component {
                             </div>
                         </section>
                     )}
-                </GetForecastAnimation>
-                <GetWeatherAnimation
+                </GetWeatherAnimation>
+
+                <GetForecastAnimation
                     key="forecast"
                     className="forecast"
                     pose={(currentWeatherEmpty && !forecastEmpty) ? 'visible' : 'hidden'}
                 >
                     {(currentWeatherEmpty && !forecastEmpty) && (
-                        <section className="section">
-                            <div className="container">
-                                <div className="columns">
-                                    <div className="column is-12">
-                                        <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
-                                            <FontAwesomeIcon icon="arrow-left" />
-                                            &nbsp; Back to Search
-                                        </Button>
-                                        <Forecast forecast={forecast} />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
+                        <div className="column">
+                            <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
+                                <FontAwesomeIcon icon="arrow-left" />
+                                &nbsp; Back to Search
+                            </Button>
+                            <Forecast forecast={forecast} />
+                        </div>
                     )}
-                </GetWeatherAnimation>
+                </GetForecastAnimation>
             </React.Fragment>
         );
     }

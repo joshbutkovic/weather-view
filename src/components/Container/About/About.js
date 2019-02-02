@@ -7,25 +7,37 @@ const About = () => (
             <div className="container">
                 <div className="columns">
                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                        <h2 className="is-size-3">About WeatherView</h2>
+                        <h2 className="is-size-3">WeatherView</h2>
                         <Paragraph className="is-italic">
                         <span className="subtitle">
                             A neat little react app to query current and future weather.
                         </span>
                         </Paragraph><br/>
-                        <h4 className="is-size-4">Featuring</h4>
                         <Paragraph>
-                            React/Redux
+                            This app is powered by the OpenWeatherMap Weather API.
+                            Visit this link to create your own free API key
+                            <br/><br/><a href={"https://openweathermap.org/api"}>https://openweathermap.org/api</a>.
+                            <br/><br/>This is a fantastic free
+                            API for building fun projects like this one.
                         </Paragraph><br/>
+                        <h2 className="is-size-3">Featured Libraries</h2>
                         <Paragraph>
-                            It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining essentially unchanged.
+                            Axios<br/>
+                            Bulma<br/>
+                            Moment<br/>
+                            Lodash<br/>
+                            React<br/>
+                            Redux & Thunk<br/>
+                            React-Router<br/>
+                            React Easy Chart<br/>
+                            React Size Detector<br/>
+                            React Toggle Switch<br/>
                         </Paragraph>
                         <hr/>
                         <Paragraph>
-                            It was popularised in the 1960s with the release of Letraset sheets
-                            containing Lorem Ipsum passages, and more recently with desktop publishing
-                            software like Aldus PageMaker including versions of Lorem Ipsum.
+                            Created by Josh Butkovic<br/>
+                            Visit my github at this link<br/>
+                            <a href="https://github.com/jjb867">https://github.com/jjb867</a>.
                         </Paragraph>
                     </div>
                 </div>

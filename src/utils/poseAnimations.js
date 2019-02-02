@@ -15,7 +15,7 @@ export const GetWeatherAnimation = posed.div({
 });
 
 export const GetForecastAnimation = posed.div({
-    hidden: { y: -10, x: -10, opacity: 0, transition: { duration: 2000 } },
+    hidden: { y: -10, x: -10, opacity: 0},
     visible: { y: 0, x: 0, opacity: 1, transition: { duration: 2000 } },
 });
 
