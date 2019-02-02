@@ -37,7 +37,7 @@ const About = () => (
                         <Paragraph>
                             Created by Josh Butkovic<br/>
                             Visit my github at this link<br/>
-                            <a href="https://github.com/jjb867" rel="noopener noreferrer" target="_blank">https://github.com/jjb867</a>.
+                            <a href="https://github.com/joshbutkovic" rel="noopener noreferrer" target="_blank">https://github.com/joshbutkovic</a>.
                         </Paragraph>
                     </div>
                 </div>
