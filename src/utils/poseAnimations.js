@@ -14,6 +14,11 @@ export const GetWeatherAnimation = posed.div({
     visible: { y: 0, x: 0, opacity: 1, transition: { duration: 250 } },
 });
 
+export const GetForecastAnimation = posed.div({
+    hidden: { y: -10, x: -10, opacity: 0, transition: { duration: 2000 } },
+    visible: { y: 0, x: 0, opacity: 1, transition: { duration: 2000 } },
+});
+
 export const charPoses = {
     exit: { opacity: 0, x: -20 },
     enter: { opacity: 1, x: 0 }

@@ -11,6 +11,7 @@ class BarChartService {
         this.axisLabel = {};
         this.allowed = [];
         this.init();
+        this.tempInt = 0;
     }
 
     init() {
@@ -22,11 +23,31 @@ class BarChartService {
         return _.pick(weatherSnap, this.allowed);
     }
 
+    assignBarColor(temp) {
+        this.tempInt = parseInt(temp)
+        if(this.tempInt < 20) {
+            return 'rgb(64, 156, 255)';
+        } else if (this.tempInt > 20 && this.tempInt > 30) {
+            return 'rgb(201, 226, 255)';
+        } else if (this.tempInt > 30 && this.tempInt < 50) {
+            return 'rgb(255, 255, 255)';
+        } else if (this.tempInt > 50 && this.tempInt < 70) {
+            return 'rgb(255, 214, 170)';
+        } else if (this.tempInt > 70 && this.tempInt < 90) {
+            return 'rgb(255, 197, 143)';
+        } else if (this.tempInt > 90) {
+            return 'rgb(255, 147, 41)';
+        } else {
+            return 'gray';
+        }
+    }
+
     filterForecastData() {
         for (let i = 0; i < 12; i++) {
             let fs = this.filterSnapshot(this.forecast[i]);
             fs.x = moment(fs.dt_txt).format('M/D ha');
             fs.y = convertKelvinToFahrenheit(parseInt(fs.main.temp));
+            fs.color = this.assignBarColor(convertKelvinToFahrenheit(parseInt(fs.main.temp)));
             if (!moment(fs.dt_txt).isBefore(this.currentDateTime)) {
                 delete fs.dt_txt;
                 delete fs.main;

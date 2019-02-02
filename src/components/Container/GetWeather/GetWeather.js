@@ -14,7 +14,7 @@ import {
 } from '../../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../../utils/regex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GetWeatherAnimation, Button, charPoses } from '../../../utils/poseAnimations';
+import { GetWeatherAnimation, GetForecastAnimation, Button, charPoses } from '../../../utils/poseAnimations';
 import SplitText from 'react-pose-text';
 import SearchBar from '../../SearchBar/SearchBar';
 import GetWeatherButton from '../../GetWeatherButton/GetWeatherButton';
@@ -133,29 +133,15 @@ class GetWeather extends Component {
         const currentWeatherEmpty = this.isWeatherResultEmpty(currentWeather);
         const forecastEmpty = this.isWeatherResultEmpty(forecast);
 
-        const getWeatherView = () => {
-            if (currentWeatherEmpty && forecastEmpty) {
-                return 'search';
-            } else if (!currentWeatherEmpty && forecastEmpty) {
-                return 'weather';
-            } else if (currentWeatherEmpty && !forecastEmpty) {
-                return 'forecast';
-            } else {
-                return 'search';
-            }
-        };
-
-        const View = getWeatherView();
-
         return (
             <React.Fragment>
                 <GetWeatherAnimation
                     key="search"
                     className="search"
                     initialPose={isSearchFadedIn ? 'visible' : 'hidden'}
-                    pose={View === 'search' ? 'visible' : 'hidden'}
+                    pose={(currentWeatherEmpty && forecastEmpty) ? 'visible' : 'hidden'}
                 >
-                    {View === 'search' && (
+                    {(currentWeatherEmpty && forecastEmpty) && (
                         <section className="section" onKeyPress={this.onKeyPress} onClick={this.onGetWeatherClick}>
                             <div className="container">
                                 <div className="columns">
@@ -210,12 +196,12 @@ class GetWeather extends Component {
                         </section>
                     )}
                 </GetWeatherAnimation>
-                <GetWeatherAnimation
+                <GetForecastAnimation
                     key="weather"
                     className="weather"
-                    pose={View === 'weather' ? 'visible' : 'hidden'}
+                    pose={(!currentWeatherEmpty && forecastEmpty) ? 'visible' : 'hidden'}
                 >
-                    {View === 'weather' && (
+                    {(!currentWeatherEmpty && forecastEmpty) && (
                         <section className="section">
                             <div className="container">
                                 <div className="columns">
@@ -230,13 +216,13 @@ class GetWeather extends Component {
                             </div>
                         </section>
                     )}
-                </GetWeatherAnimation>
+                </GetForecastAnimation>
                 <GetWeatherAnimation
                     key="forecast"
                     className="forecast"
-                    pose={View === 'forecast' ? 'visible' : 'hidden'}
+                    pose={(currentWeatherEmpty && !forecastEmpty) ? 'visible' : 'hidden'}
                 >
-                    {View === 'forecast' && (
+                    {(currentWeatherEmpty && !forecastEmpty) && (
                         <section className="section">
                             <div className="container">
                                 <div className="columns">
