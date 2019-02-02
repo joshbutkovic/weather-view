@@ -1,4 +1,4 @@
-##WeatherView
+## WeatherView
 
 This app is powered by the OpenWeatherMap Weather API.  It was developed to demonstrate React and other technologies.
 
@@ -30,3 +30,4 @@ Navigate to the project root and run the app
 ```bash
 cd /weather-view && npm run start
 ```
+WeatherView will then open in a browser and run at http://localhost:3000/
