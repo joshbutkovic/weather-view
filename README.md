@@ -26,3 +26,7 @@ Add the following line to the newly created file apiKey.js replacing the string 
 ```Javascript
 export const API_KEY = '[YOUR-API-KEY]';
 ```
+Navigate to the project root and run the app
+```bash
+cd /weather-view && npm run start
+```
