@@ -51,3 +51,31 @@ export const Button = posed.div({
     }
 });
 
+export const NavIcon = posed.div({
+    hoverable: true,
+    pressable: true,
+    init: {
+        color: '#4a4a4a',
+    },
+    hover: {
+        color: '#3273dc',
+    },
+    press: {
+        color: '#3273dc',
+    }
+});
+
+export const AnchorLink = posed.a({
+    hoverable: true,
+    pressable: true,
+    init: {
+        color: '#3273dc',
+    },
+    hover: {
+        color: '#023ea0',
+    },
+    press: {
+        color: '#023ea0',
+    }
+})
+

@@ -134,7 +134,6 @@ class GetWeather extends Component {
 
         return (
             <React.Fragment>
-
                 <GetWeatherAnimation
                     key="search"
                     className="search"

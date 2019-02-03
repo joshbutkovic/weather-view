@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavIcon } from '../../../utils/poseAnimations';
 
 class MainMenu extends Component {
     render() {
@@ -8,11 +9,17 @@ class MainMenu extends Component {
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item">
-                        <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
+                        <NavIcon>
+                            <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
+                        </NavIcon>
                     </Link>
+                    <NavIcon>
                     <Link to="/about" className="navbar-item">
-                        <span className="has-text-weight-semibold is-size-5">About</span>
+                        <NavIcon>
+                            <span className="has-text-weight-semibold is-size-5">About</span>
+                        </NavIcon>
                     </Link>
+                    </NavIcon>
                 </div>
             </nav>
         );

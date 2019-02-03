@@ -1,9 +1,8 @@
 @import '../../node_modules/bulma/bulma';
-@import '../../node_modules/bulma-extensions/bulma-switch/dist/css/bulma-switch';
-@import url('https://fonts.googleapis.com/css?family=Sarabun');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 html, body, input.input {
-    font-family: 'Sarabun', 'Arial', sans-serif;
+    font-family: 'Source Sans Pro', 'Arial', sans-serif;
 }
 
 input.input:focus {
