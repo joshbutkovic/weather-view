@@ -31,6 +31,7 @@ class GetWeather extends Component {
             invalidMaxLength: '',
             selectedSearchParameter: '',
             poweredByUrl: 'https://openweathermap.org',
+            invalidSearchText: 'Enter a valid City or Zip',
             isSearchFadedIn: false,
             isSearchFocused: false,
             isForecastToggled: false,
@@ -66,7 +67,7 @@ class GetWeather extends Component {
     };
 
     getWeather = () => {
-        const { searchTerm, isForecastToggled } = this.state;
+        const { searchTerm, isForecastToggled, invalidSearchText } = this.state;
         const {
             getCurrentWeatherByCity,
             getForecastByCity,
@@ -77,26 +78,24 @@ class GetWeather extends Component {
         } = this.props;
 
         if (this.checkForValidSearchCity(searchTerm)) {
-            !isForecastToggled ? getCurrentWeatherByCity(searchTerm) : getForecastByCity(searchTerm);
+            if(!isForecastToggled) {
+                getCurrentWeatherByCity(searchTerm)
+            } else {
+                getForecastByCity(searchTerm);
+            }
             clearError();
         } else if (this.checkForValidSearchZip(searchTerm)) {
             !isForecastToggled ? getCurrentWeatherByZip(searchTerm) : getForecastByZip(searchTerm);
             clearError();
         } else {
-            setError('Invalid search term');
+            setError(invalidSearchText);
         }
     };
 
     onClick = () => {
         const { length } = this.state.searchTerm;
         const { setError } = this.props;
-        if (length > 2) {
-            this.getWeather();
-        } else if (length > 50) {
-            setError('Search term must not be more than 50 characters');
-        } else {
-            setError('Search term must be at least 3 characters');
-        }
+        ((length > 2) && (length < 50)) ? this.getWeather() : setError(this.state.invalidSearchText);
     };
 
     onSearchBarFocus = () => {
@@ -120,7 +119,7 @@ class GetWeather extends Component {
         this.props.clearError();
         this.setState(prevState => {
             return {
-                isForecastToggled: !prevState.isForecastToggled
+                isForecastToggled: !prevState.isForecastToggled,
             };
         });
     };
@@ -131,16 +130,16 @@ class GetWeather extends Component {
         const { isSearchFadedIn, isForecastToggled, searchTerm, poweredByUrl } = this.state;
         const currentWeatherEmpty = this.isWeatherResultEmpty(currentWeather);
         const forecastEmpty = this.isWeatherResultEmpty(forecast);
-
+        console.log('render called get Weather');
         return (
             <React.Fragment>
                 <GetWeatherAnimation
                     key="search"
                     className="search"
                     initialPose={isSearchFadedIn ? 'visible' : 'hidden'}
-                    pose={(currentWeatherEmpty && forecastEmpty) ? 'visible' : 'hidden'}
+                    pose={currentWeatherEmpty && forecastEmpty ? 'visible' : 'hidden'}
                 >
-                    {(currentWeatherEmpty && forecastEmpty) && (
+                    {currentWeatherEmpty && forecastEmpty && (
                         <section className="section" onKeyPress={this.onKeyPress} onClick={this.onGetWeatherClick}>
                             <div className="container">
                                 <div className="columns">
@@ -200,16 +199,16 @@ class GetWeather extends Component {
                 <GetWeatherAnimation
                     key="weather"
                     className="weather"
-                    pose={(!currentWeatherEmpty && forecastEmpty) ? 'visible' : 'hidden'}
+                    pose={!currentWeatherEmpty && forecastEmpty ? 'visible' : 'hidden'}
                 >
-                    {(!currentWeatherEmpty && forecastEmpty) && (
+                    {!currentWeatherEmpty && forecastEmpty && (
                         <section className="section">
                             <div className="container">
                                 <div className="columns">
                                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                                         <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                             <FontAwesomeIcon icon="arrow-left" />
-                                            &nbsp; Back to Search
+                                            &nbsp;Back to Search
                                         </Button>
                                         <WeatherCard weather={currentWeather} />
                                     </div>
@@ -222,9 +221,9 @@ class GetWeather extends Component {
                 <GetForecastAnimation
                     key="forecast"
                     className="forecast"
-                    pose={(currentWeatherEmpty && !forecastEmpty) ? 'visible' : 'hidden'}
+                    pose={currentWeatherEmpty && !forecastEmpty ? 'visible' : 'hidden'}
                 >
-                    {(currentWeatherEmpty && !forecastEmpty) && (
+                    {currentWeatherEmpty && !forecastEmpty && (
                         <div className="column">
                             <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                 <FontAwesomeIcon icon="arrow-left" />
@@ -265,5 +264,5 @@ export default connect(
         getForecastByZip,
         setError,
         clearError,
-    }
+    },
 )(GetWeather);

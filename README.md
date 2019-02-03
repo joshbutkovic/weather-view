@@ -1,11 +1,11 @@
-## WeatherView
+# WeatherView
 *"A neat little React/Redux app to search current and future weather"*
 
 Created By: **Josh Butkovic**
 
 This app is powered by the OpenWeatherMap Weather API.  It was developed to demonstrate React and other technologies.
 
-#### Featured Libraries
+## Featured Libraries
 Axios,
 Bulma,
 Lodash,
@@ -24,7 +24,7 @@ React Toggle Switch
 A big thanks to PopMotion, all the animations are done with Pose for React.
 What a fantastic high level library!
 
-#### Getting Started
+## Getting Started
 
 Visit this link to create your own free API key:
 [https://openweathermap.org/api](https://openweathermap.org/api").

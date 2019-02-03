@@ -58,6 +58,7 @@ export const ForecastFilter = {
                 processedForecast.push(fs);
             }
         }
+        console.log(processedForecast);
         return processedForecast;
     },
     filterSnapshot: (weatherSnap) => {

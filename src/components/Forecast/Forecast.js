@@ -32,7 +32,7 @@ class Forecast extends Component {
                             yAxisOrientRight
                             axes={width > 530}
                             axisLabels={{ x: 'Time', y: 'Temp Fahrenheit' }}
-                            width={width - 23}
+                            width={width}
                             height={500}
                             data={ForecastFilter.init(this.props.forecast.list)}
                         />
