@@ -14,12 +14,17 @@ import {
 } from '../../../store/actions/weatherActions';
 import { zipRegex, cityRegex } from '../../../utils/regex';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { GetWeatherAnimation, GetForecastAnimation, Button, charPoses } from '../../../utils/poseAnimations';
+import {
+    GetWeatherAnimation,
+    GetForecastAnimation,
+    Button,
+    charPoses,
+    Input,
+    Paragraph,
+} from '../../../utils/poseAnimations';
 import SplitText from 'react-pose-text';
 import SearchBar from '../../SearchBar/SearchBar';
 import GetWeatherButton from '../../GetWeatherButton/GetWeatherButton';
-import WeatherCard from '../../WeatherCard/WeatherCard';
-import Forecast from '../../Forecast/Forecast';
 
 class GetWeather extends Component {
     constructor() {
@@ -38,18 +43,10 @@ class GetWeather extends Component {
         };
     }
 
-    componentDidMount() {
-        this.setState({ isSearchFadedIn: true });
-    }
-
     onSearchTermChange = e => {
         this.setState({
             searchTerm: e.target.value,
         });
-    };
-
-    onBackToSearchClick = () => {
-        this.props.clearWeather();
     };
 
     checkForValidSearchCity = searchTerm => {
@@ -75,17 +72,14 @@ class GetWeather extends Component {
             getForecastByZip,
             clearError,
             setError,
+            history,
         } = this.props;
 
         if (this.checkForValidSearchCity(searchTerm)) {
-            if(!isForecastToggled) {
-                getCurrentWeatherByCity(searchTerm)
-            } else {
-                getForecastByCity(searchTerm);
-            }
+            !isForecastToggled ? getCurrentWeatherByCity(searchTerm, history) : getForecastByCity(searchTerm, history);
             clearError();
         } else if (this.checkForValidSearchZip(searchTerm)) {
-            !isForecastToggled ? getCurrentWeatherByZip(searchTerm) : getForecastByZip(searchTerm);
+            !isForecastToggled ? getCurrentWeatherByZip(searchTerm, history) : getForecastByZip(searchTerm, history);
             clearError();
         } else {
             setError(invalidSearchText);
@@ -93,9 +87,10 @@ class GetWeather extends Component {
     };
 
     onClick = () => {
+        console.log('onclick fired');
         const { length } = this.state.searchTerm;
         const { setError } = this.props;
-        ((length > 2) && (length < 50)) ? this.getWeather() : setError(this.state.invalidSearchText);
+        length > 2 && length < 50 ? this.getWeather() : setError(this.state.invalidSearchText);
     };
 
     onSearchBarFocus = () => {
@@ -108,13 +103,6 @@ class GetWeather extends Component {
         }
     };
 
-    isWeatherResultEmpty = obj => {
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) return false;
-        }
-        return true;
-    };
-
     onToggleSwitchClick = () => {
         this.props.clearError();
         this.setState(prevState => {
@@ -125,114 +113,102 @@ class GetWeather extends Component {
     };
 
     render() {
-        const { currentWeather, forecast } = this.props.weather;
         const { message } = this.props.error;
-        const { isSearchFadedIn, isForecastToggled, searchTerm, poweredByUrl } = this.state;
-        const currentWeatherEmpty = this.isWeatherResultEmpty(currentWeather);
-        const forecastEmpty = this.isWeatherResultEmpty(forecast);
+        const { isForecastToggled, searchTerm, poweredByUrl } = this.state;
         console.log('render called get Weather');
         return (
             <React.Fragment>
-                <GetWeatherAnimation
-                    key="search"
-                    className="search"
-                    initialPose={isSearchFadedIn ? 'visible' : 'hidden'}
-                    pose={currentWeatherEmpty && forecastEmpty ? 'visible' : 'hidden'}
-                >
-                    {currentWeatherEmpty && forecastEmpty && (
-                        <section className="section" onKeyPress={this.onKeyPress} onClick={this.onGetWeatherClick}>
-                            <div className="container">
-                                <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <h1 className="is-size-2">WeatherView</h1>
-                                        <h3 className="is-size-5">
-                                            <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
-                                                {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
-                                            </SplitText>
-                                        </h3>
-                                        <p className="attribution">
-                                            Powered by <a href={poweredByUrl}>{poweredByUrl}</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <SearchBar
-                                            name="searchTerm"
-                                            value={searchTerm}
-                                            onChange={this.onSearchTermChange}
-                                            onFocus={this.onSearchBarFocus}
-                                            errorMessage={message}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <div className="columns is-gapless">
-                                            <div className="column is-3">
-                                                <label>
-                                                    <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
-                                                        {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
-                                                    </SplitText>
-                                                </label>
-                                            </div>
-                                            <div className="column is-1">
-                                                <Switch
-                                                    className="has-background-link"
-                                                    onClick={this.onToggleSwitchClick}
-                                                    on={isForecastToggled}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <GetWeatherButton onClick={this.onClick} />
-                                    </div>
-                                </div>
+                <div className="container">
+                    <section className="section">
+                        {/* All Sizes */}
+                        <div className="columns">
+                            <div className="column">
+                                <h1 className="is-size-2 is-size-3-mobile">WeatherView</h1>
+                                <p className="attribution">
+                                    Powered by <a href={poweredByUrl}>{poweredByUrl}</a>
+                                </p>
                             </div>
-                        </section>
-                    )}
-                </GetWeatherAnimation>
-
-                <GetWeatherAnimation
-                    key="weather"
-                    className="weather"
-                    pose={!currentWeatherEmpty && forecastEmpty ? 'visible' : 'hidden'}
-                >
-                    {!currentWeatherEmpty && forecastEmpty && (
-                        <section className="section">
-                            <div className="container">
-                                <div className="columns">
-                                    <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                                        <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
-                                            <FontAwesomeIcon icon="arrow-left" />
-                                            &nbsp;Back to Search
-                                        </Button>
-                                        <WeatherCard weather={currentWeather} />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
-                </GetWeatherAnimation>
-
-                <GetForecastAnimation
-                    key="forecast"
-                    className="forecast"
-                    pose={currentWeatherEmpty && !forecastEmpty ? 'visible' : 'hidden'}
-                >
-                    {currentWeatherEmpty && !forecastEmpty && (
-                        <div className="column">
-                            <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
-                                <FontAwesomeIcon icon="arrow-left" />
-                                &nbsp; Back to Search
-                            </Button>
-                            <Forecast forecast={forecast} />
                         </div>
-                    )}
-                </GetForecastAnimation>
+                        <div className="search-type-label is-hidden-mobile">
+                            <h3 className="is-size-6-mobile">
+                                Search Type:&nbsp;&nbsp;
+                                <strong>
+                                    <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+                                        {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
+                                    </SplitText>
+                                </strong>
+                            </h3>
+                        </div>
+                        {/* Mobile */}
+                        <div className="is-hidden-tablet box">
+                            <div className="field has-addons">
+                                <div className="control is-expanded">
+                                    <Input
+                                        name="searchTerm"
+                                        className="input has-text-left search-bar"
+                                        type="search"
+                                        placeholder="Enter a City or Zip"
+                                        value={searchTerm}
+                                        onChange={this.onSearchTermChange}
+                                        onFocus={this.onSearchBarFocus}
+                                    />
+                                    {message && (
+                                        <span className="error has-text-info">{message}</span>
+                                    )}
+                                </div>
+                                <div className="control">
+                                    <GetWeatherButton isMobile={true} onClick={this.onClick} />
+                                </div>
+                            </div>
+                            <div className="search-type-label">
+                                <h3 className="is-size-6-mobile">
+                                    Search Type:&nbsp;&nbsp;
+                                    <strong>
+                                        <SplitText initialPose="exit" pose="enter" charPoses={charPoses}>
+                                            {!isForecastToggled ? 'Current Weather' : '24 Hour Forecast'}
+                                        </SplitText>
+                                    </strong>
+                                </h3>
+                                <div className="control mobile-switch">
+                                    <Switch
+                                        className="has-background-link"
+                                        onClick={this.onToggleSwitchClick}
+                                        on={isForecastToggled}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        {/* Tablet/Desktop */}
+                        <div className="box is-hidden-mobile">
+                            <div className="field has-addons">
+                                <div className="control">
+                                    <Switch
+                                        className="has-background-link desktop-switch"
+                                        onClick={this.onToggleSwitchClick}
+                                        on={isForecastToggled}
+                                    />
+                                </div>
+                                <div className="control is-expanded">
+                                    <Input
+                                        name="searchTerm"
+                                        className="input has-text-centered search-bar"
+                                        type="search"
+                                        placeholder="Enter a City or Zip"
+                                        value={searchTerm}
+                                        onChange={this.onSearchTermChange}
+                                        onFocus={this.onSearchBarFocus}
+                                    />
+                                    {message && (
+                                        <span className="error has-text-info">{message}</span>
+                                    )}
+                                </div>
+                                <div className="control">
+                                    <GetWeatherButton isMobile={false} onClick={this.onClick} />
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </React.Fragment>
         );
     }

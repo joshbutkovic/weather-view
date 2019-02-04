@@ -13,13 +13,11 @@ class MainMenu extends Component {
                             <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
                         </NavIcon>
                     </Link>
-                    <NavIcon>
                     <Link to="/about" className="navbar-item">
                         <NavIcon>
                             <span className="has-text-weight-semibold is-size-5">About</span>
                         </NavIcon>
                     </Link>
-                    </NavIcon>
                 </div>
             </nav>
         );

@@ -7,7 +7,7 @@ const About = () => (
             <div className="container">
                 <div className="columns">
                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
-                        <h1 className="is-size-2">What is WeatherView?</h1>
+                        <h1 className="is-size-2 is-size-3-mobile">What is WeatherView?</h1>
                         <Paragraph className="is-italic">
                         <span className="subtitle">
                             "A neat little React/Redux app to search current and future weather"

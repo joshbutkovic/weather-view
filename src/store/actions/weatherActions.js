@@ -15,7 +15,7 @@ import {
     getForecastByZipUrl,
 } from '../../config/apiConfig';
 
-export const getCurrentWeatherByZip = (zip) => async dispatch => {
+export const getCurrentWeatherByZip = (zip, history) => async dispatch => {
     try {
         const res = await axios.get(getCurrentWeatherByZipUrl(zip));
         dispatch({
@@ -30,7 +30,7 @@ export const getCurrentWeatherByZip = (zip) => async dispatch => {
     }
 };
 
-export const getCurrentWeatherByCity = (city) => async dispatch => {
+export const getCurrentWeatherByCity = (city, history) => async dispatch => {
     try {
         const res = await axios.get(getCurrentWeatherByCityUrl(city));
         dispatch({
@@ -52,7 +52,7 @@ export const clearWeather = () => async dispatch => {
     });
 };
 
-export const getForecastByZip = (zip) => async dispatch => {
+export const getForecastByZip = (zip, history) => async dispatch => {
     try {
         const res = await axios.get(getForecastByZipUrl(zip));
         dispatch({
@@ -67,7 +67,7 @@ export const getForecastByZip = (zip) => async dispatch => {
     }
 };
 
-export const getForecastByCity = (city) => async dispatch => {
+export const getForecastByCity = (city, history) => async dispatch => {
     const res = await axios.get(getForecastByCityUrl(city));
     dispatch({
         type: GET_FORECAST_BY_CITY,

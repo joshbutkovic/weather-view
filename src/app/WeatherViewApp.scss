@@ -5,6 +5,10 @@ html, body, input.input {
     font-family: 'Source Sans Pro', 'Arial', sans-serif;
 }
 
+input.input .has-text-centered .search-bar {
+    border-radius: 4px !important;
+}
+
 input.input:focus {
     box-shadow:none !important;
 }

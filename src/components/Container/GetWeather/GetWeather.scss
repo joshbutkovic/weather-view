@@ -10,33 +10,78 @@ input.input:focus {
   box-shadow: none !important;
 }
 
+.box {
+  padding: 0.75rem;
+}
+
 .switch.on {
   background: green;
 }
 
 .switch {
-  border: 1px solid #ccc;
-  width: 50px;
-  height: 26px;
+  border: 1px solid #eee;
+  width: 41px;
+  height: 17px;
   border-radius: 13px;
   cursor: pointer;
   display: inline-block;
 }
 
 .switch-toggle {
-  border: 1px solid #999;
-  width: 25px;
-  height: 24px;
-  left: 0;
-  border-radius: 12px;
+  border: 1px solid #cec5c5;
+  width: 19px;
+  height: 19px;
+  left: -3px;
+  bottom: 2px;
+  border-radius: 9px;
   background: #fff;
   position: relative;
-  transition: left .2s ease-in-out;
+  transition: left 100ms ease-in-out;
 }
 
 .switch.on .switch-toggle {
-  left: 23px;
+  left: 1.5rem;
 }
+
+.button.is-link.is-medium {
+  //margin-left: 1rem;
+}
+
+.field.has-addons .control:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.field.has-addons .control:first-child .input {
+  border-radius: 4px;
+}
+
+.mobile-switch {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.desktop-switch {
+  margin-top: 0.67rem;
+}
+
+@media screen and (max-width: 768px) {
+  .box:not(:last-child) {
+    width: auto;
+  }
+  .field.has-addons .control:last-child .button,
+  .field.has-addons .control:first-child .input {
+    border-radius: 4px;
+  }
+  .section {
+    padding-top: 1rem;
+  }
+  .is-size-6-mobile {
+    font-size: 1rem !important;
+    margin-top: 0.5rem;
+  }
+}
+
+
 
 @media screen and (max-width: 500px) {
   h1.is-size-3 {
@@ -45,10 +90,10 @@ input.input:focus {
   p.attribution {
     font-size: 0.75rem !important;
   }
-  button.button.is-link,
-  input.input.is-medium {
-    font-size: 1.125rem;
-  }
+  //button.button.is-link,
+  //input.input.is-medium {
+  //  font-size: 1.125rem;
+  //}
   p.has-text-info {
     font-size: 0.875rem;
   }
