@@ -22,11 +22,13 @@ export const getCurrentWeatherByZip = (zip, history) => async dispatch => {
             type: GET_CURRENT_WEATHER_BY_ZIP,
             payload: res.data,
         });
+        history.push('/current');
     } catch (error) {
         dispatch({
             type: SET_ERROR,
             payload: 'No location found for that zip',
         });
+        history.push('/');
     }
 };
 
@@ -37,11 +39,13 @@ export const getCurrentWeatherByCity = (city, history) => async dispatch => {
             type: GET_CURRENT_WEATHER_BY_CITY,
             payload: res.data,
         });
+        history.push('/current');
     } catch (error) {
         dispatch({
             type: SET_ERROR,
             payload: 'No location found for that city',
         });
+        history.push('/');
     }
 };
 
@@ -59,20 +63,31 @@ export const getForecastByZip = (zip, history) => async dispatch => {
             type: GET_FORECAST_BY_ZIP,
             payload: res.data,
         });
+        history.push('/forecast');
     } catch (error) {
         dispatch({
             type: SET_ERROR,
             payload: 'No location found for that zip',
         });
+        history.push('/');
     }
 };
 
 export const getForecastByCity = (city, history) => async dispatch => {
-    const res = await axios.get(getForecastByCityUrl(city));
-    dispatch({
-        type: GET_FORECAST_BY_CITY,
-        payload: res.data,
-    });
+    try {
+        const res = await axios.get(getForecastByCityUrl(city));
+        dispatch({
+            type: GET_FORECAST_BY_CITY,
+            payload: res.data,
+        });
+        history.push('/forecast');
+    } catch (error) {
+        dispatch({
+            type: SET_ERROR,
+            payload: 'No location found for that city',
+        });
+        history.push('/');
+    }
 };
 
 export const setError = (error) => async dispatch => {

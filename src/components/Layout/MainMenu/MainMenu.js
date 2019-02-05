@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './MainMenu.scss';
 import { NavIcon } from '../../../utils/poseAnimations';
 
-class MainMenu extends Component {
-    render() {
+const MainMenu = () => {
         return (
             <nav className="navbar" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
-                    <Link to="/" className="navbar-item">
+                    <NavLink exact to="/" className="navbar-item" activeClassName='is-active'>
                         <NavIcon>
                             <FontAwesomeIcon icon="cloud-sun-rain" size="2x"/>
                         </NavIcon>
-                    </Link>
-                    <Link to="/about" className="navbar-item">
+                    </NavLink>
+                    <NavLink to="/about" className="navbar-item" activeClassName='is-active'>
                         <NavIcon>
                             <span className="has-text-weight-semibold is-size-5">About</span>
                         </NavIcon>
-                    </Link>
+                    </NavLink>
                 </div>
             </nav>
         );
-    }
-}
-
-MainMenu.propTypes = {};
+};
 
 export default MainMenu;
