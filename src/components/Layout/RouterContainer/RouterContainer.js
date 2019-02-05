@@ -4,6 +4,7 @@ import posed, { PoseGroup } from 'react-pose';
 import GetWeather from '../../Container/GetWeather/GetWeather';
 import About from '../../Container/About/About';
 import ShowCurrentWeather from '../../Container/ShowCurrentWeather/ShowCurrentWeather';
+import ShowForecast from '../../Container/ShowForecast/ShowForecast';
 
 const RouteTransitionWrapper = posed.div({
     enter: { opacity: 1 },
@@ -20,6 +21,7 @@ const RouterContainer = () => {
                             <Route exact path="/" component={GetWeather} key={'get'} />
                             <Route path="/about" component={About} key={'about'} />
                             <Route path="/current" component={ShowCurrentWeather} key={'current'} />
+                            <Route path="/forecast" component={ShowForecast} key={'forecast'} />
                         </Switch>
                     </RouteTransitionWrapper>
                 </PoseGroup>
