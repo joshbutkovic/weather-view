@@ -44,9 +44,34 @@ export const getLatestDescriptionIndex = weather => {
     return parseInt(lastIndex);
 };
 
+export const getTempRange = forecast => {
+    let highTemp = 0,
+        lowTemp = 0;
+    for (let i = 0; i < 12; i++) {
+        let fs = ForecastFilter.filterSnapshot(forecast[i]);
+        fs.y = convertKelvinToFahrenheit(parseInt(fs.main.temp));
+        if(i === 0) {
+            highTemp = fs.y;
+            lowTemp = fs.y;
+        } else {
+            if(fs.y < lowTemp) {
+                lowTemp = fs.y;
+            }
+            if(fs.y > highTemp) {
+                highTemp = fs.y;
+            }
+        }
+    }
+    return {
+        lowTemp,
+        highTemp
+    };
+};
+
 export const ForecastFilter = {
     init: (forecast) => {
         let processedForecast = [];
+
         for (let i = 0; i < 12; i++) {
             let fs = ForecastFilter.filterSnapshot(forecast[i]);
             fs.x = moment(fs.dt_txt).format('M/D ha');
@@ -58,7 +83,6 @@ export const ForecastFilter = {
                 processedForecast.push(fs);
             }
         }
-        console.log(processedForecast);
         return processedForecast;
     },
     filterSnapshot: (weatherSnap) => {

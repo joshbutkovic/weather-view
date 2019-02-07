@@ -1,6 +1,11 @@
 @import '../../node_modules/bulma/bulma';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+html {
+    background-image: url(../assets/images/light-grey-terrazzo.png);
+    background-repeat: repeat;
+}
+
 html, body, input.input {
     font-family: 'Source Sans Pro', 'Arial', sans-serif;
 }

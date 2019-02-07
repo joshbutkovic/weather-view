@@ -6,6 +6,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import WeatherCard from '../../WeatherCard/WeatherCard';
 
 class ShowCurrentWeather extends Component {
+
+    componentDidMount() {
+        const { currentWeather } = this.props.weather;
+        if (this.isWeatherResultEmpty(currentWeather)) {
+            this.props.history.push('/');
+        }
+    }
+
     isWeatherResultEmpty = obj => {
         for (let key in obj) {
             if (obj.hasOwnProperty(key)) return false;

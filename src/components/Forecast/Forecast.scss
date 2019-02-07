@@ -3,9 +3,13 @@ text {
   font-family: 'Source Sans Pro', 'Arial', sans-serif !important;
   fill: #222!important;
 }
-
 text.label {
   font-weight: bold !important;
   dominant-baseline: central !important;
   fill: #999999 !important;
+}
+@media screen and (max-width: 600px) {
+  .bar-chart-wrapper {
+    margin-top: 1rem;
+  }
 }
