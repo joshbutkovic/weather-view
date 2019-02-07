@@ -41,7 +41,7 @@ class GetWeather extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if(nextProps.error.message.length !== 0) {
+        if(nextProps.error.message) {
             this.setState({ isProcessing: false });
         }
     }

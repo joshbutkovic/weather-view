@@ -3,8 +3,8 @@ import { Container, Paragraph, AnchorLink } from '../../../utils/poseAnimations'
 
 const About = () => (
     <Container>
-        <section className="section">
-            <div className="container">
+        <div className="container">
+            <section className="section">
                 <div className="columns">
                     <div className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2">
                         <h1 className="is-size-2 is-size-3-mobile">What is WeatherView?</h1>
@@ -69,8 +69,8 @@ const About = () => (
                         </Paragraph>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </Container>
 );
 
