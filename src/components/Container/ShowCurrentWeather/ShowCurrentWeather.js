@@ -3,23 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button, GetWeatherAnimation } from '../../../utils/poseAnimations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isWeatherResultEmpty } from '../../../utils/weatherUtil';
 import WeatherCard from '../../WeatherCard/WeatherCard';
 
 class ShowCurrentWeather extends Component {
 
     componentDidMount() {
         const { currentWeather } = this.props.weather;
-        if (this.isWeatherResultEmpty(currentWeather)) {
+        if (isWeatherResultEmpty(currentWeather)) {
             this.props.history.push('/');
         }
     }
-
-    isWeatherResultEmpty = obj => {
-        for (let key in obj) {
-            if (obj.hasOwnProperty(key)) return false;
-        }
-        return true;
-    };
 
     onKeyPress = e => {
         if (e.key === 'Enter') {
@@ -33,7 +27,7 @@ class ShowCurrentWeather extends Component {
 
     render() {
         const { currentWeather } = this.props.weather;
-        const currentWeatherEmpty = this.isWeatherResultEmpty(currentWeather);
+        const currentWeatherEmpty = isWeatherResultEmpty(currentWeather);
 
         return (
             <React.Fragment>

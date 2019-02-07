@@ -32,11 +32,18 @@ class GetWeather extends Component {
             isSearchFadedIn: false,
             isSearchFocused: false,
             isForecastToggled: false,
+            isProcessing: false,
         };
     }
 
     componentDidMount() {
         this.setState({ isSearchFadedIn: true });
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if(nextProps.error.message.length > 1) {
+            this.setState({isProcessing: false});
+        }
     }
 
     onSearchTermChange = e => {
@@ -72,9 +79,11 @@ class GetWeather extends Component {
         } = this.props;
 
         if (this.checkForValidSearchCity(searchTerm)) {
+            this.setState({ isProcessing: true });
             !isForecastToggled ? getCurrentWeatherByCity(searchTerm, history) : getForecastByCity(searchTerm, history);
             clearError();
         } else if (this.checkForValidSearchZip(searchTerm)) {
+            this.setState({ isProcessing: true });
             !isForecastToggled ? getCurrentWeatherByZip(searchTerm, history) : getForecastByZip(searchTerm, history);
             clearError();
         } else {
@@ -104,7 +113,7 @@ class GetWeather extends Component {
 
     render() {
         const { message } = this.props.error;
-        const { isForecastToggled, searchTerm, poweredByUrl} = this.state;
+        const { isForecastToggled, searchTerm, poweredByUrl, isProcessing } = this.state;
 
         return (
             <React.Fragment>
@@ -149,7 +158,11 @@ class GetWeather extends Component {
                                         {message && <span className="error has-text-info">{message}</span>}
                                     </div>
                                     <div className="control">
-                                        <GetWeatherButton isMobile={true} onClick={this.onClick} />
+                                        <GetWeatherButton
+                                            isMobile={true}
+                                            onClick={this.onClick}
+                                            isProcessing={isProcessing}
+                                        />
                                     </div>
                                 </div>
                                 <div className="search-type-label">
@@ -193,7 +206,11 @@ class GetWeather extends Component {
                                         {message && <span className="error has-text-info">{message}</span>}
                                     </div>
                                     <div className="control">
-                                        <GetWeatherButton isMobile={false} onClick={this.onClick} />
+                                        <GetWeatherButton
+                                            isMobile={false}
+                                            onClick={this.onClick}
+                                            isProcessing={isProcessing}
+                                        />
                                     </div>
                                 </div>
                             </div>

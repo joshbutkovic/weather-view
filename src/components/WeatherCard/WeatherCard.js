@@ -28,7 +28,7 @@ const WeatherCard = props => {
                 </div>
                 <div className="content">
                     <p className="subtitle is-4">
-                        <span className="has-text-link has-text-weight-bold is-3">
+                        <span className="has-text-primary has-text-weight-bold is-2 current-temp">
                             {convertKelvinToFahrenheit(weather.main.temp)}
                         </span>
                         &nbsp;&deg;F&nbsp;
@@ -56,7 +56,7 @@ const WeatherCard = props => {
                         <div className="column">
                             <strong>Low Temp</strong>
                             :&nbsp;
-                            <span className="has-text-primary has-text-weight-bold is-3">
+                            <span className="has-text-link has-text-weight-bold is-3">
                                 {convertKelvinToFahrenheit(weather.main.temp_min)}
                             </span>
                             &nbsp;&deg;F&nbsp;

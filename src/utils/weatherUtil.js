@@ -68,6 +68,13 @@ export const getTempRange = forecast => {
     };
 };
 
+export const isWeatherResultEmpty = obj => {
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) return false;
+    }
+    return true;
+};
+
 export const ForecastFilter = {
     init: (forecast) => {
         let processedForecast = [];

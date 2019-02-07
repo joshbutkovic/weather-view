@@ -1,10 +1,16 @@
 import React from 'react';
 import { Button } from '../../utils/poseAnimations';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import classnames from 'classnames';
 
-const GetWeatherButton = ({isMobile, onClick}) => {
+const GetWeatherButton = ({isMobile, onClick, isProcessing}) => {
         return (
-            <Button className="button is-link" onClick={onClick}>
+            <Button
+                className={classnames('button is-link', {
+                    'is-loading': isProcessing,
+                })}
+                onClick={onClick}
+            >
                 <FontAwesomeIcon icon="search"/>
             </Button>
         );

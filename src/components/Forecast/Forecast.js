@@ -41,13 +41,13 @@ class Forecast extends Component {
                                 <div className="column is-half-mobile">
                                     <label className="is-size-5">Low:</label>&nbsp;
                                     <span className="is-size-5 has-text-info has-text-weight-bold">
-                                        {getTempRange(this.props.forecast.list).lowTemp}&nbsp;F
+                                        {getTempRange(this.props.forecast.list).lowTemp}&nbsp;&deg;F&nbsp;
                                     </span>
                                 </div>
                                 <div className="column is-half-mobile">
                                     <label className="is-size-5">High:</label>&nbsp;
                                         <span className="is-size-5 has-text-danger has-text-weight-bold">
-                                            {getTempRange(this.props.forecast.list).highTemp}&nbsp;F
+                                            {getTempRange(this.props.forecast.list).highTemp}&nbsp;&deg;F&nbsp;
                                         </span>
                                 </div>
                             </div>
