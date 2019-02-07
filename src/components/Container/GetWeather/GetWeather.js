@@ -41,8 +41,8 @@ class GetWeather extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if(nextProps.error.message.length > 1) {
-            this.setState({isProcessing: false});
+        if (nextProps.error) {
+            this.setState({ isProcessing: false });
         }
     }
 
@@ -124,8 +124,8 @@ class GetWeather extends Component {
                             <div className="columns">
                                 <div className="column">
                                     <h1 className="is-size-2 is-size-3-mobile">
-                                        <FontAwesomeIcon icon="search-location"/>&nbsp;
-                                        WeatherView
+                                        <FontAwesomeIcon icon="search-location" />
+                                        &nbsp; WeatherView
                                     </h1>
                                     <p className="attribution">
                                         Powered by <a href={poweredByUrl}>{poweredByUrl}</a>

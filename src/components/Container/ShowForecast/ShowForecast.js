@@ -58,7 +58,4 @@ ShowForecast.propTypes = {
     weather: PropTypes.object.isRequired,
 };
 
-export default connect(
-    mapStateToProps,
-    {},
-)(ShowForecast);
+export default connect(mapStateToProps)(ShowForecast);

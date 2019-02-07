@@ -1,15 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import posed, { PoseGroup } from 'react-pose';
+import { PoseGroup } from 'react-pose';
+import { RouteTransitionWrapper } from '../../../utils/poseAnimations';
 import GetWeather from '../../Container/GetWeather/GetWeather';
 import About from '../../Container/About/About';
 import ShowCurrentWeather from '../../Container/ShowCurrentWeather/ShowCurrentWeather';
 import ShowForecast from '../../Container/ShowForecast/ShowForecast';
-
-const RouteTransitionWrapper = posed.div({
-    enter: { opacity: 1 },
-    exit: { opacity: 0 },
-});
 
 const RouterContainer = () => {
     return (
@@ -28,6 +25,10 @@ const RouterContainer = () => {
             )}
         />
     );
+};
+
+RouterContainer.propTypes = {
+    location: PropTypes.object,
 };
 
 export default RouterContainer;
