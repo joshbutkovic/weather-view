@@ -41,7 +41,7 @@ class GetWeather extends Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.error) {
+        if(nextProps.error.message.length !== 0) {
             this.setState({ isProcessing: false });
         }
     }
@@ -62,6 +62,7 @@ class GetWeather extends Component {
 
     onKeyPress = e => {
         if (e.key === 'Enter') {
+            this.setState({ isProcessing: true });
             this.getWeather();
         }
     };
@@ -79,11 +80,9 @@ class GetWeather extends Component {
         } = this.props;
 
         if (this.checkForValidSearchCity(searchTerm)) {
-            this.setState({ isProcessing: true });
             !isForecastToggled ? getCurrentWeatherByCity(searchTerm, history) : getForecastByCity(searchTerm, history);
             clearError();
         } else if (this.checkForValidSearchZip(searchTerm)) {
-            this.setState({ isProcessing: true });
             !isForecastToggled ? getCurrentWeatherByZip(searchTerm, history) : getForecastByZip(searchTerm, history);
             clearError();
         } else {
@@ -92,7 +91,7 @@ class GetWeather extends Component {
     };
 
     onClick = () => {
-        console.log('onclick fired');
+        this.setState({ isProcessing: true });
         const { length } = this.state.searchTerm;
         const { setError } = this.props;
         length > 2 && length < 50 ? this.getWeather() : setError(this.state.invalidSearchText);

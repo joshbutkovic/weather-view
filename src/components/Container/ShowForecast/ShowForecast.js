@@ -15,12 +15,6 @@ class ShowForecast extends Component {
         }
     }
 
-    onKeyPress = e => {
-        if (e.key === 'Enter') {
-            this.props.history.push('/');
-        }
-    };
-
     onBackToSearchClick = () => {
         this.props.history.push('/');
     };
@@ -33,7 +27,7 @@ class ShowForecast extends Component {
             <React.Fragment>
                 {!isForecastEmpty && (
                     <GetForecastAnimation key="forecast" className="forecast" initialPose="hidden" pose="visible">
-                        <div className="container" onKeyPress={this.onKeyPress}>
+                        <div className="container">
                             <section className="section">
                                 <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>
                                     <FontAwesomeIcon icon="arrow-left" />
