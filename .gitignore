@@ -29,3 +29,5 @@ yarn-error.log*
 .idea/codeStyles/Project.xml
 
 /src/configuration/apiKey.js
+tests/__snapshots__/
+tests/__tests__/

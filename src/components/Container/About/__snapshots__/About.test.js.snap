@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About should render correctly with no props 1`] = `
+<ForwardRef>
+  <div
+    className="container"
+  >
+    <section
+      className="section"
+    >
+      <div
+        className="columns"
+      >
+        <div
+          className="column is-10-mobile is-offset-1-mobile is-8 is-offset-2"
+        >
+          <h1
+            className="is-size-2 is-size-3-mobile"
+          >
+            What is WeatherView?
+          </h1>
+          <ForwardRef
+            className="is-italic"
+          >
+            <span
+              className="subtitle"
+            >
+              "A neat little React/Redux app to search current and future weather"
+            </span>
+          </ForwardRef>
+          <br />
+          <ForwardRef>
+            This app is powered by the 
+            <strong>
+              OpenWeatherMap Weather API
+            </strong>
+            . Visit this link to create your own free API key.
+            <br />
+            <br />
+            <ForwardRef
+              href="https://openweathermap.org/api"
+            >
+              https://openweathermap.org/api
+            </ForwardRef>
+            .
+            <br />
+            <br />
+            This is a fantastic free API for building fun projects like this one.
+          </ForwardRef>
+          <br />
+          <h2
+            className="is-size-4"
+          >
+            Featured Libraries
+          </h2>
+          <ForwardRef>
+            <ForwardRef
+              href="https://github.com/axios/axios"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Axios
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://bulma.io/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Bulma
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://lodash.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Lodash
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://momentjs.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Moment
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://github.com/sass/node-sass"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Node Sass
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://reactjs.org/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://reactjs.org/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React-Router
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://redux.js.org/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Redux
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://github.com/reduxjs/redux-thunk"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Thunk
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://rma-consulting.github.io/react-easy-chart/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React Easy Chart
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://github.com/maslianok/react-resize-detector"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React Resize Detector
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://www.npmjs.com/package/react-toggle-switch"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React Toggle Switch
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://origin.fontawesome.com/how-to-use/on-the-web/using-with/react"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React Font Awesome
+            </ForwardRef>
+            <br />
+            <ForwardRef
+              href="https://www.npmjs.com/package/react-toggle-switch"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              React Toggle Switch
+            </ForwardRef>
+            <br />
+            <br />
+            A big thanks to 
+            <strong>
+              PopMotion
+            </strong>
+            , all the animations are done with Pose for React.
+            <br />
+            What a fantastic high level library!
+            <br />
+            <br />
+            <ForwardRef
+              href="https://popmotion.io/pose/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              POSE
+            </ForwardRef>
+            <br />
+          </ForwardRef>
+          <hr />
+          <ForwardRef>
+            <strong>
+              Created By:
+            </strong>
+             Josh Butkovic
+            <br />
+            <strong>
+              Github:
+            </strong>
+             
+            <ForwardRef
+              href="https://github.com/joshbutkovic"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              https://github.com/joshbutkovic
+            </ForwardRef>
+            <br />
+            <strong>
+              Gmail:
+            </strong>
+             
+            <ForwardRef
+              href="mailto:joshbutkovic@gmail.com?subject=A Message From WeatherView"
+            >
+              joshbutkovic@gmail.com
+            </ForwardRef>
+          </ForwardRef>
+        </div>
+      </div>
+    </section>
+  </div>
+</ForwardRef>
+`;
