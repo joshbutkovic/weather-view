@@ -7,9 +7,11 @@ import classnames from 'classnames';
 const GetWeatherButton = ({onClick, isProcessing}) => {
         return (
             <Button
-                className={classnames('button is-link', {
+                className={
+                    classnames('button is-link', {
                     'is-loading': isProcessing,
-                })}
+                    })
+                }
                 onClick={onClick}
             >
                 <FontAwesomeIcon icon="search"/>
