@@ -90,7 +90,7 @@ class GetWeather extends Component {
         }
     };
 
-    onClick = () => {
+    handleOnClick = () => {
         this.setState({ isProcessing: true });
         const { length } = this.state.searchTerm;
         const { setError } = this.props;
@@ -159,7 +159,7 @@ class GetWeather extends Component {
                                     <div className="control">
                                         <GetWeatherButton
                                             isMobile={true}
-                                            onClick={this.onClick}
+                                            handleOnClick={this.handleOnClick}
                                             isProcessing={isProcessing}
                                         />
                                     </div>
@@ -207,7 +207,7 @@ class GetWeather extends Component {
                                     <div className="control">
                                         <GetWeatherButton
                                             isMobile={false}
-                                            onClick={this.onClick}
+                                            handleOnClick={this.handleOnClick}
                                             isProcessing={isProcessing}
                                         />
                                     </div>

@@ -1,19 +1,41 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import WeatherViewApp from './WeatherViewApp';
+import MainMenu from '../components/Layout/MainMenu/MainMenu';
+import RouterContainer from '../components/Layout/RouterContainer/RouterContainer';
 
 describe('WeatherViewApp', () => {
+    let appComponentMounted;
+    let appComponent;
 
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<WeatherViewApp />, div);
-    ReactDOM.unmountComponentAtNode(div);
-  });
-  it('should render a <div />', () => {
-    const wrapper = shallow(<WeatherViewApp />);
-    expect(wrapper.find('div').length).toEqual(1);
-  });
+    beforeAll(() => {
+        appComponentMounted = mount(<WeatherViewApp />);
+        appComponent = shallow(<WeatherViewApp />);
+    });
 
+    describe('rendering tests', () => {
+
+        it('matches snapshot', () => {
+            expect(appComponentMounted).toMatchSnapshot();
+        });
+
+        it('has a store', () => {
+
+        })
+
+        it('renders a <div />', () => {
+            expect(appComponent.find('div').length).toEqual(1);
+        });
+
+        it('renders <MainMenu>', () => {
+            const mainMenu = appComponent.find(MainMenu);
+            expect(mainMenu).toHaveLength(1);
+        });
+
+        it('renders <RouterContainer>', () => {
+            const routerContainer = appComponent.find(RouterContainer);
+            expect(routerContainer).toHaveLength(1);
+        });
+
+    });
 });
-

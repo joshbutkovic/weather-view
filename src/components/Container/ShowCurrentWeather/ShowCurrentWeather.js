@@ -26,7 +26,7 @@ class ShowCurrentWeather extends Component {
         return (
             <React.Fragment>
                 {!currentWeatherEmpty && (
-                    <GetWeatherAnimation key="search" className="search" initialPose="hidden" pose="visible">
+                    <GetWeatherAnimation key="weather" className="weather" initialPose="hidden" pose="visible">
                         <div className="container">
                             <section className="section">
                                 <Button className="button is-small is-link" onClick={this.onBackToSearchClick}>

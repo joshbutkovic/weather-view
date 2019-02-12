@@ -1,13 +1,19 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Button } from '../../../utils/poseAnimations';
 import ShowCurrentWeather from './ShowCurrentWeather';
 
-describe('ShowCurrentWeather', () => {
-    test('should render without crashing', () => {
-        const component = shallow(<ShowCurrentWeather />);
+describe('<ShowCurrentWeather />', () => {
+
+    let component;
+
+    beforeAll(() => {
+        component = shallow(<ShowCurrentWeather />);
+    });
+
+    it('matches snapshot', () => {
         expect(component).toMatchSnapshot();
     });
-    describe('weather object is empty', () => {
-        test('should redirect to get weather', () => {});
-    });
+
+
 });
