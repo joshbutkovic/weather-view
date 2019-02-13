@@ -21,7 +21,7 @@ describe('WeatherViewApp', () => {
 
         it('has a store', () => {
 
-        })
+        });
 
         it('renders a <div />', () => {
             expect(appComponent.find('div').length).toEqual(1);
