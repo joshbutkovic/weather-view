@@ -19,7 +19,6 @@ React Easy Chart,
 React Resize Detector,
 React Toggle Switch,
 React Font Awesome,
-React Toggle Switch
 
 A big thanks to PopMotion, all the animations are done with Pose for React.
 What a fantastic high level library!
