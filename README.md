@@ -1,5 +1,7 @@
 # WeatherView
 
+https://joshbutkovic.github.io/weather-view
+
 _"A neat little React/Redux app to search current and future weather"_
 
 Created By: **Josh Butkovic**
@@ -32,29 +34,4 @@ Visit this link to create your own free API key:
 
 This is a fantastic free API for building fun projects like this one.
 
-Clone the app
 
-```bash
-git clone https://github.com/joshbutkovic/weather-view.git
-```
-
-Navigate to the directory and npm install
-
-```bash
-cd weather-view/
-```
-
-Add your api key in src/config/apiKey.js replacing the string with your API key
-
-```Javascript
-export const API_KEY = 'YOUR-API-KEY';
-```
-
-Navigate to the project root and run the app
-
-```bash
-cd /weather-view && npm run start
-```
-
-WeatherView will then open in a browser and run at
-http://localhost:3000
