@@ -15,10 +15,10 @@ const RouterContainer = () => {
                 <PoseGroup>
                     <RouteTransitionWrapper key={location.pathname}>
                         <Switch location={location}>
-                            <Route exact path="/" component={GetWeather} key={'get'} />
-                            <Route path="/about" component={About} key={'about'} />
-                            <Route path="/current" component={ShowCurrentWeather} key={'current'} />
-                            <Route path="/forecast" component={ShowForecast} key={'forecast'} />
+                            <Route exact path="/weather-view/" component={GetWeather} key={'get'} />
+                            <Route path="/weather-view/about" component={About} key={'about'} />
+                            <Route path="/weather-view/current" component={ShowCurrentWeather} key={'current'} />
+                            <Route path="/weather-view/forecast" component={ShowForecast} key={'forecast'} />
                         </Switch>
                     </RouteTransitionWrapper>
                 </PoseGroup>
