@@ -1,0 +1,14 @@
+{
+  "main.css": "/weather-view/static/css/main.e775079b.chunk.css",
+  "main.js": "/weather-view/static/js/main.ab2e73fb.chunk.js",
+  "main.js.map": "/weather-view/static/js/main.ab2e73fb.chunk.js.map",
+  "static/js/1.f8b532a9.chunk.js": "/weather-view/static/js/1.f8b532a9.chunk.js",
+  "static/js/1.f8b532a9.chunk.js.map": "/weather-view/static/js/1.f8b532a9.chunk.js.map",
+  "runtime~main.js": "/weather-view/static/js/runtime~main.8e0dc539.js",
+  "runtime~main.js.map": "/weather-view/static/js/runtime~main.8e0dc539.js.map",
+  "static/media/WeatherViewApp.scss": "/weather-view/static/media/light-grey-terrazzo.37434414.png",
+  "static/css/main.e775079b.chunk.css.map": "/weather-view/static/css/main.e775079b.chunk.css.map",
+  "index.html": "/weather-view/index.html",
+  "precache-manifest.9721b84e1d4aafefb4e21d674ef6db8e.js": "/weather-view/precache-manifest.9721b84e1d4aafefb4e21d674ef6db8e.js",
+  "service-worker.js": "/weather-view/service-worker.js"
+}
