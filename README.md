@@ -27,7 +27,7 @@ React Font Awesome,
 A big thanks to PopMotion, all the animations are done with Pose for React.
 What a fantastic high level library!
 
-## Getting Started
+## Build your own app
 
 Visit this link to create your own free API key:
 [https://openweathermap.org/api](https://openweathermap.org/api").
