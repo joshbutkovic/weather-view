@@ -7,7 +7,6 @@ import { isWeatherResultEmpty } from '../../../utils/weatherUtil';
 import WeatherCard from '../../WeatherCard/WeatherCard';
 
 class ShowCurrentWeather extends Component {
-
     componentDidMount() {
         const { currentWeather } = this.props.weather;
         if (isWeatherResultEmpty(currentWeather)) {
@@ -16,7 +15,7 @@ class ShowCurrentWeather extends Component {
     }
 
     onBackToSearchClick = () => {
-        this.props.history.push('/');
+        this.props.history.push('/weather-view');
     };
 
     render() {

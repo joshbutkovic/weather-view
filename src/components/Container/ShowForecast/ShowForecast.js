@@ -16,7 +16,7 @@ class ShowForecast extends Component {
     }
 
     onBackToSearchClick = () => {
-        this.props.history.push('/');
+        this.props.history.push('/weather-view');
     };
 
     render() {
