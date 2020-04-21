@@ -1,6 +1,6 @@
 # WeatherView
 
-https://joshbutkovic.github.io/weather-view
+Live Demo: https://joshbutkovic.github.io/weather-view
 
 _"A neat little React/Redux app to search current and future weather"_
 
