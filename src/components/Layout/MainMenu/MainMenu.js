@@ -13,7 +13,7 @@ const MainMenu = () => {
                         <FontAwesomeIcon icon="cloud-sun-rain" size="2x" />
                     </NavIcon>
                 </NavLink>
-                <NavLink to="weather-view/about" className="navbar-item" activeClassName="is-active">
+                <NavLink to="/weather-view/about" className="navbar-item" activeClassName="is-active">
                     <NavIcon>
                         <span className="has-text-weight-semibold is-size-5">About</span>
                     </NavIcon>
