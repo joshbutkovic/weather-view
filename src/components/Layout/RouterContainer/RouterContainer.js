@@ -16,7 +16,7 @@ const RouterContainer = () => {
                     <RouteTransitionWrapper key={location.pathname}>
                         <Switch location={location}>
                             <Route exact path="/weather-view/" component={GetWeather} key={'get'} />
-                            <Route path="/weather-view/about" component={About} key={'about'} />
+                            <Route exact path="/weather-view/about" component={About} key={'about'} />
                             <Route path="/weather-view/current" component={ShowCurrentWeather} key={'current'} />
                             <Route path="/weather-view/forecast" component={ShowForecast} key={'forecast'} />
                         </Switch>
